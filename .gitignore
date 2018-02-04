@@ -102,3 +102,6 @@ ENV/
 
 # Database folder for containing data
 db_data
+
+# Built Vue UI file
+fyp-web-ml-project/static
