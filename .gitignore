@@ -105,3 +105,18 @@ db_data
 
 # Built Vue UI file
 fyp-web-ml-project/static
+
+# Vue-specific settings
+vue-ui/.DS_Store
+vue-ui/node_modules/
+vue-ui/npm-debug.log*
+vue-ui/yarn-debug.log*
+vue-ui/yarn-error.log*
+
+# Editor directories and files
+vue-ui/.idea
+vue-ui/.vscode
+vue-ui/*.suo
+vue-ui/*.ntvs*
+vue-ui/*.njsproj
+vue-ui/*.sln
