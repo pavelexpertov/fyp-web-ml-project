@@ -1,2 +1,2 @@
-graft flaskr/templates
-graft flaskr/static
+graft fyp_web_ml_project/templates
+graft fyp_web_ml_project/static

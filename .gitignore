@@ -104,7 +104,7 @@ ENV/
 db_data
 
 # Built Vue UI file
-fyp-web-ml-project/static
+fyp_web_ml_project/static
 
 # Vue-specific settings
 vue-ui/.DS_Store
