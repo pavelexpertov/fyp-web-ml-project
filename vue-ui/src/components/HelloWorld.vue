@@ -80,17 +80,46 @@
         </a>
       </li>
     </ul>
+    <btn @click="add">
+        add
+    </btn>
+    <h3>
+        {{response_add}}
+    </h3>
+    <p @click="show">
+        show
+    </p>
+    <h3>
+        {{response_show}}
+    </h3>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      response_show: '',
+      response_add: '',
     }
-  }
+},
+methods: {
+    add: function(){
+        this.$http.get('add')
+        .then(result => {
+            this.response_add = result.body
+        })
+    },
+    show: function(){
+        this.$http.get('show')
+        .then(result => {
+            this.response_show = result.body
+        })
+    }
+}
 }
 </script>
 
