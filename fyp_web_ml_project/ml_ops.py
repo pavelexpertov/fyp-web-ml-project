@@ -1,7 +1,7 @@
-collection_dict = {}
+import fyp_web_ml_project.ml_classes_collection.ml_class_collector as ml_class_collector
 
-def add_item(something, something2):
-    collection_dict[something] = something2
+ml_class_dict = ml_class_collector.ML_CLASSES_DICT
+ml_trained_models_dict = {}
 
-def get_coll():
-    return collection_dict
+def show_class_dict():
+    print(ml_class_dict)

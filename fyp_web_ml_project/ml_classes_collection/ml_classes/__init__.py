@@ -7,6 +7,7 @@ def _import_package_files():
     globals_, locals_ = globals(), locals()
     package_path = os.path.dirname(__file__)
     package_name = os.path.basename(package_path)
+    package_name = 'fyp_web_ml_project.ml_classes_collection.' + package_name
 
     for filename in os.listdir(package_path):
         modulename, ext = os.path.splitext(filename)

@@ -1,5 +1,5 @@
 
-class DecisionTrees:
+class DecisionTreesML:
 
     def __init__(self, name):
         self.name = name
