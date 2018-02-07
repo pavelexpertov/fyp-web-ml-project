@@ -10,5 +10,6 @@ class DecisionTreesML(AbstractMlClass):
         else:
             super().__init__(name, DecisionTreeRegressor())
 
-    def printOut(self):
-        print(self.name)
+    def reconfigure_class(self, settings_json):
+        self.remove_features_names_list()
+        self.estimator = DecisionTreeRegressor(**settings_json)
