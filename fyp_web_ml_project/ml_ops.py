@@ -7,8 +7,8 @@ ml_models_dict = {}
 
 def get_ml_class_and_settings_list():
     '''Return a list of strings representing ML class names and their settings'''
-    return [[class_name, class_obj().get_current_settings_parameters()]
-            for class_name, class_obj in ml_class_dict.items()]
+    return [[class_name, get_ml_class_settings(class_name)]
+            for class_name in ml_class_dict]
 
 
 def get_ml_class_settings(ml_class_name):
