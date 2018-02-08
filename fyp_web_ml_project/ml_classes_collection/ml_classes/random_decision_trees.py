@@ -1,5 +1,5 @@
 
-class RandomDecisionTreesML:
+class RandomDecisionTrees:
     def __init__(self, name):
         self.name = name
 
