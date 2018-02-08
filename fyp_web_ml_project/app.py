@@ -31,6 +31,12 @@ def predict_model(ml_id):
         return "You just passed"
 
 
+@app.route('/mlmodels/<ml_id>/created')
+def is_model_create(ml_id):
+    '''Machine learning model routes'''
+    return "You just passed"
+
+
 @app.route('/mlalgorithms')
 def get_ml_algorithms():
     '''Return a list of available algorithms and their information'''
