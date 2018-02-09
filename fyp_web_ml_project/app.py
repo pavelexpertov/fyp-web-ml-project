@@ -18,12 +18,15 @@ def train_model(ml_id):
     '''Machine learning model routes'''
     json_body = request.get_json(force=True)
     if request.method == 'POST':
-        mlmodels.create_model(ml_id, json_body['ml_class_name'], json_body['settings_json'], json_body['dataset_query_json'])
+        mlmodels.create_model(
+            ml_id, json_body['ml_class_name'], json_body['settings_json'], json_body['dataset_query_json'])
         obj = {'ok': True, 'message': "{0} has been created".format(ml_id)}
         return jsonify(obj)
     elif request.method == 'PUT':
-        mlmodels.reconfigure_model(ml_id, json_body['settings_json'], json_body['dataset_query_json'])
-        obj = {'ok': True, 'message': "{0} has been reconfigured".format(ml_id)}
+        mlmodels.reconfigure_model(
+            ml_id, json_body['settings_json'], json_body['dataset_query_json'])
+        obj = {'ok': True,
+               'message': "{0} has been reconfigured".format(ml_id)}
         return jsonify(obj)
     else:
         raise Exception("The method you used is wrong")
@@ -35,7 +38,8 @@ def predict_model(ml_id):
     # Get a prediction
     if request.method == 'POST':
         features_values_json = request.get_json(force=True)
-        prediction = mlmodels.get_prediction_from_model(ml_id, features_values_json)
+        prediction = mlmodels.get_prediction_from_model(
+            ml_id, features_values_json)
         return jsonify({'prediction': prediction})
     # Get a schema representing prediction features form
     else:
@@ -61,16 +65,3 @@ def query_data_set():
     '''Return result for a dataset query'''
     query_json = request.get_json(force=True)
     return jsonify(dataset.query_data_set(query_json))
-
-
-@app.route('/add')
-def add_something():
-    '''Test'''
-    test.add_item()
-    return 'Successfully added item'
-
-
-@app.route('/show')
-def show():
-    '''test'''
-    return str(test.get_coll())
