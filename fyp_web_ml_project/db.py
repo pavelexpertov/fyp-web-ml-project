@@ -14,7 +14,7 @@ def get_training_and_target_set(store_number, features_list, start_date=START_DA
     if len(features_list) == 0:
         raise Exception("features_list needs to have more than 0 items.")
     features_list = features_list.copy()
-    SALES_KEY = 'WeeklySales'
+    SALES_KEY = 'Weekly_Sales'
     if SALES_KEY not in features_list:
         features_list.append(SALES_KEY)
     data_set_list = get_store_dataset_json_list(
