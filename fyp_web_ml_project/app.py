@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from .route_handlers import mlmodels, dataset, mlalgorithms
+from .ml_ops import NotFoundMlClassError, NotFoundMlModelError,\
+UntrainedMlModelError
 
 app = Flask(__name__)
 app.config.update(dict(
@@ -65,3 +67,20 @@ def query_data_set():
     '''Return result for a dataset query'''
     query_json = request.get_json(force=True)
     return jsonify(dataset.query_data_set(query_json))
+
+# Error handlers for certain expressions
+@app.errorhandler(NotFoundMlModelError)
+def handle_not_found_model(exc):
+    obj = {'message': str(exc)}
+    return jsonify(obj), 404
+
+
+@app.errorhandler(NotFoundMlClassError)
+def handle_not_found_class(exc):
+    obj = {'message': str(exc)}
+    return jsonify(obj), 404
+
+@app.errorhandler(UntrainedMlModelError)
+def handle_untrained_ml_model(exc):
+    obj = {'message': str(exc)}
+    return jsonify(obj), 500

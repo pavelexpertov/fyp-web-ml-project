@@ -84,7 +84,8 @@ def reconfigure_model(ml_model_name, settings_json):
 
 
 class Error(Exception):
-    pass
+    def __str__(self):
+        return self.message
 
 
 class NotFoundMlClassError(Error):
