@@ -58,7 +58,7 @@ def create_model(ml_model_name, ml_class_name, settings_json):
     try:
         ml_class = ml_class_dict[ml_class_name]
         validator_utils.check_ml_settings_json(
-            ml_class().get_settings_parameter_list(), settings_json)
+            ml_class(ml_model_name).get_settings_parameter_list(), settings_json)
         ml_models_dict[ml_model_name] = ml_class(settings_json)
     except KeyError:
         raise NotFoundMlClassError(ml_class_name)
