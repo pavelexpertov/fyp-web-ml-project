@@ -10,6 +10,10 @@ def create_json_schema_field(field_name, actual_value, required=True):
         schema_field_dict['inputType'] = 'text'
     elif type(actual_value) is int or type(actual_value) is float:
         schema_field_dict['inputType'] = 'number'
+    elif type(actual_value) is bool:
+        schema_field_dict['type'] = 'checkbox'
+    elif actual_value is None:
+        pass
     else:
         raise UnrecognisedTypeError(actual_value, field_name)
     return schema_field_dict
