@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 from .route_handlers import mlmodels, dataset, mlalgorithms
-from .ml_ops import NotFoundMlClassError, NotFoundMlModelError, UntrainedMlModelError
 import fyp_web_ml_project.exceptions_collection as exc_coll
 
 app = Flask(__name__)
@@ -68,24 +67,24 @@ def query_data_set():
     query_json = request.get_json(force=True)
     return jsonify(dataset.query_data_set(query_json))
 
-# Error handlers for certain expressions
-@app.errorhandler(NotFoundMlModelError)
+# Error handlers for exceptions
+@app.errorhandler(exc_coll.NotFoundMlModelError)
 def handle_not_found_model(exc):
-    obj = {'message': str(exc)}
-    return jsonify(obj), 404
+    return _jsonify_error_json(exc), 404
 
 
-@app.errorhandler(NotFoundMlClassError)
+@app.errorhandler(exc_coll.NotFoundMlClassError)
 def handle_not_found_class(exc):
-    obj = {'message': str(exc)}
-    return jsonify(obj), 404
+    return _jsonify_error_json(exc), 404
 
-@app.errorhandler(UntrainedMlModelError)
+@app.errorhandler(exc_coll.UntrainedMlModelError)
 def handle_untrained_ml_model(exc):
-    obj = {'message': str(exc)}
-    return jsonify(obj), 500
+    return _jsonify_error_json(exc), 500
 
 @app.errorhandler(exc_coll.UnrecognisedTypeError)
 def handle_unrecognised_type(exc):
-    obj = {'message': str(exc)}
-    return jsonify(obj), 500
+    return _jsonify_error_json(exc), 500
+
+def _jsonify_error_json(exc):
+    '''Format the exception for JSON output'''
+    return jsonify({'message': str(exc)})
