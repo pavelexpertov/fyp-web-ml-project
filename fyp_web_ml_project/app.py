@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from .route_handlers import mlmodels, dataset, mlalgorithms
-from .ml_ops import NotFoundMlClassError, NotFoundMlModelError,\
-UntrainedMlModelError
+from .ml_ops import NotFoundMlClassError, NotFoundMlModelError, UntrainedMlModelError
+import fyp_web_ml_project.exceptions_collection as exc_coll
 
 app = Flask(__name__)
 app.config.update(dict(
@@ -82,5 +82,10 @@ def handle_not_found_class(exc):
 
 @app.errorhandler(UntrainedMlModelError)
 def handle_untrained_ml_model(exc):
+    obj = {'message': str(exc)}
+    return jsonify(obj), 500
+
+@app.errorhandler(exc_coll.UnrecognisedTypeError)
+def handle_unrecognised_type(exc):
     obj = {'message': str(exc)}
     return jsonify(obj), 500
