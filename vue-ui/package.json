@@ -13,6 +13,7 @@
   "dependencies": {
     "chartjs": "^0.3.24",
     "element-ui": "^2.1.0",
+    "launch-editor-middleware": "^2.2.1",
     "moment": "^2.20.1",
     "vue": "^2.5.2",
     "vue-form-generator": "^2.2.0",
