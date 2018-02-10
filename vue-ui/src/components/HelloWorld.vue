@@ -80,9 +80,9 @@
         </a>
       </li>
     </ul>
-    <btn @click="add">
+    <!-- <btn @click="add">
         add
-    </btn>
+    </btn> -->
     <h3>
         {{response_add}}
     </h3>

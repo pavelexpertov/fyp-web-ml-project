@@ -1,13 +1,26 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+      <el-container direction="vertical">
+          <header-bar-component></header-bar-component>
+          <el-container>
+              <side-bar-component></side-bar-component>
+              <el-main>
+                <router-view/>
+              </el-main>
+          </el-container>
+      </el-container>
   </div>
 </template>
 
 <script>
+import HeaderBarComponent from './components/HeaderBarComponent'
+import SideBarComponent from './components/SideBarComponent'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    headerBarComponent: HeaderBarComponent,
+    SideBarComponent: SideBarComponent
+  }
 }
 </script>
 
