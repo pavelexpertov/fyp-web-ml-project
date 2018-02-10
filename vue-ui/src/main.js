@@ -6,6 +6,7 @@ import router from './router'
 import httpConfig from './resource'
 import './element-ui'
 import './form-generator'
+import store from './store'
 
 Vue.config.productionTip = false
 
@@ -13,6 +14,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   http: httpConfig,
   components: { App },
   template: '<App/>'

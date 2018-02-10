@@ -16,40 +16,40 @@
 // import * as _ from 'lodash'
 
 export default {
-    name: "MlAlgorithmsDropDownList",
-    props: {
-        selectedAlgorithm {
-            type: Object,
-            default: function(){
-                return {}
-            }
-        }
-    },
-    data () {
-        return {
-            mlAlgorithmList: []
-        }
-    },
-    methods: {
-        handleSelectedItem: function(){
-            this.$emit("selectedItem", this.selectedAlgorithm)
-            /*let index = _.findIndex(this.mlAlgorithmList, {name: this.selectedAlgorithm})
+  name: 'MlAlgorithmsDropDownList',
+  props: {
+    selectedAlgorithm: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    }
+  },
+  data () {
+    return {
+      mlAlgorithmList: []
+    }
+  },
+  methods: {
+    handleSelectedItem: function () {
+      this.$emit('selectedItem', this.selectedAlgorithm)
+      /* let index = _.findIndex(this.mlAlgorithmList, {name: this.selectedAlgorithm})
             if(index !== -1){
                 this.$emit("selectedItem", this.mlAlgorithmList[index])
             }
             else{
                 console.log("Unfortunately, the mlalgorithm of", this.selectedAlgorithm, "couldn't be found")
-            }*/
-            /*for(var i = 0; i < this.mlAlgorithmList.length; ++i){
-            }*/
-        }
-    },
-    created: function(){
-        this.$http.get('mlalgorithms')
-        .then(mlAlgorithmListResponse => {
-            this.mlAlgorithmList = mlAlgorithmListResponse.body
-        })
+            } */
+      /* for(var i = 0; i < this.mlAlgorithmList.length; ++i){
+            } */
     }
+  },
+  created: function () {
+    this.$http.get('mlalgorithms')
+      .then(mlAlgorithmListResponse => {
+        this.mlAlgorithmList = mlAlgorithmListResponse.body
+      })
+  }
 }
 </script>
 

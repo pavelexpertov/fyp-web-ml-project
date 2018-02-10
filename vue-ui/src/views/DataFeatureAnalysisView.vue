@@ -21,21 +21,21 @@
 import DataSetConfigurationsPanel from '@components/DataSetConfigurationsPanel'
 
 export default {
-    name: 'DataFeatureAnalysisView',
-    data () {
-        return {
-            dataConfigObject: ''
-        }
-    },
-    methods: {
-        saveName () {
-            //Add a default dataset configuration
-            console.log("Implement me in the savename of the datafeatureanalysis!!!")
-        }
-    },
-    components: {
-        dataSetConfigurationsPanel: DataSetConfigurationsPanel
+  name: 'DataFeatureAnalysisView',
+  data () {
+    return {
+      dataConfigObject: ''
     }
+  },
+  methods: {
+    saveName () {
+      // Add a default dataset configuration
+      console.log('Implement me in the savename of the datafeatureanalysis!!!')
+    }
+  },
+  components: {
+    dataSetConfigurationsPanel: DataSetConfigurationsPanel
+  }
 }
 </script>
 

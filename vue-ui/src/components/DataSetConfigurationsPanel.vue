@@ -38,48 +38,47 @@
 
 <script>
 export default {
-    name: 'DataSetConfigurationsPanel',
-    data () {
-        return {}
+  name: 'DataSetConfigurationsPanel',
+  data () {
+    return {}
+  },
+  props: {
+    datasetConfigObj: {
+      type: Object,
+      required: true
     },
-    props: {
-        datasetConfigObj: {
-            type: Object,
-            required: true
-        },
-        showButton: {
-            type: Boolean,
-            required: true
-        }
-    },
-    computed: {
-        storeIdList: function() {
-            let store_list = []
-            for(var id = 1; id <= 45; ++id)
-                store_list.push(id)
-            return store_list
-        },
-        featureNamesList: function() {
-            let featuresList = ['Weekly_Sales', 'Temperature', 'Fuel_Price',
-                             'MarkDown1', 'MarkDown2', 'MarkDown3', 'MarkDown4',
-                             'MarkDown5', 'CPI', 'Unemployment']
-            let length = featuresList.length
-            for(var i = 0; i < length; ++i){
-                let obj = {
-                            key: featuresList[i],
-                            label: featuresList[i]
-                            disabled: false
-                          }
-                featuresList[i] = obj
-            }
-            return featuresList
-        }
-    },
-    methods: {
-        handleClick: function(){
-            this.$emit('click')
-        }
+    showButton: {
+      type: Boolean,
+      required: true
     }
+  },
+  computed: {
+    storeIdList: function () {
+      let storeList = []
+      for (var id = 1; id <= 45; ++id) { storeList.push(id) }
+      return storeList
+    },
+    featureNamesList: function () {
+      let featuresList = ['Weekly_Sales', 'Temperature', 'Fuel_Price',
+        'MarkDown1', 'MarkDown2', 'MarkDown3', 'MarkDown4',
+        'MarkDown5', 'CPI', 'Unemployment']
+      let length = featuresList.length
+      for (var i = 0; i < length; ++i) {
+        let obj = {
+          key: featuresList[i],
+          label: featuresList[i],
+          disabled: false
+        }
+        featuresList[i] = obj
+      }
+      return featuresList
+    }
+  },
+  methods: {
+    handleClick: function () {
+      this.$emit('click')
+    }
+  }
 }
 </script>
 

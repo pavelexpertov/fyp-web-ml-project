@@ -11,40 +11,40 @@
 <script>
 import MlAlgorithmsDropDownList from './components/MlAlgorithmsDropDownList'
 export default {
-    name: "MlConfigurationsPanel",
-    data () {
-        return {
-            newName: "Enter a new name for the configuration",
-            selectedMlObj: {},
-            isMlModelBuilt: false,
-            formOptions: {
-                validateAfterLoad: false,
-                validateAfterChanged: false
-            }
-        }
+  name: 'MlConfigurationsPanel',
+  data () {
+    return {
+      newName: 'Enter a new name for the configuration',
+      selectedMlObj: {},
+      isMlModelBuilt: false,
+      formOptions: {
+        validateAfterLoad: false,
+        validateAfterChanged: false
+      }
+    }
+  },
+  computed: {
+    mlConfigName: function () {
+      return this.mlConfigurationsObj.name
     },
-    computed: {
-        mlConfigName: function(){
-            return mlConfigurationsObj.name
-        },
-        buttonText: function(){
-            return this.isMlModelBuilt?"Build":"Rebuild"
-        }
-    },
-    methods: {
-        handleSelectedItem: function(ml_al_obj){
-            console.log("Got the selected ml algorithm!!!!", ml_al_obj)
-        }
-    },
-    props: {
-        mlConfigurationsObj: {
-            type: Object,
-            required: true
-        }
-    },
-    components: {
-        mlAlgorithmsDropDownList: MlAlgorithmsDropDownList
-    },
+    buttonText: function () {
+      return this.isMlModelBuilt ? 'Build' : 'Rebuild'
+    }
+  },
+  methods: {
+    handleSelectedItem: function (mlAlgorithmObj) {
+      console.log('Got the selected ml algorithm!!!!', mlAlgorithmObj)
+    }
+  },
+  props: {
+    mlConfigurationsObj: {
+      type: Object,
+      required: true
+    }
+  },
+  components: {
+    mlAlgorithmsDropDownList: MlAlgorithmsDropDownList
+  }
 }
 </script>
 

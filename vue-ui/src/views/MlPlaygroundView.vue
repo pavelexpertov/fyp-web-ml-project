@@ -37,37 +37,38 @@ import MlConfigurationsPanel from '@components/MlConfigurationsPanel'
 import DataSetConfigurationsPanel from '@components/DataSetConfigurationsPanel'
 
 export default {
-    name: "MlPlaygroundView",
-    data () {
-        return {
-            mlConfigObject: '',
-            dataConfigObject:'',
-            newMlConfigName: ''
-        }
-    },
-    components: {
-        mlConfigurationsPanel: MlConfigurationsPanel,
-        dataSetConfigurationsPanel: DataSetConfigurationsPanel
-    },
-    computed: {
-        datasetConfigsList: function(){
-            //Return a list of configs for the dropdown list
-            console.log("Implement me in the datasetConfigsList")
-        }
+  name: 'MlPlaygroundView',
+  data () {
+    return {
+      mlConfigObject: '',
+      dataConfigObject: '',
+      newMlConfigName: ''
     }
-    methods: {
-        saveName () {
-            //Create a new empty ML config object after user enters a name
-            console.log("Implement me in the saveName")
-        }
-    },
-    created: function(){
-        //check for the existing ml Config
-        let model_name = this.$route.params.model_name
-        if(model_name){
-            console.log("Implement me!!!!!!!")
-        }
+  },
+  components: {
+    mlConfigurationsPanel: MlConfigurationsPanel,
+    dataSetConfigurationsPanel: DataSetConfigurationsPanel
+  },
+  computed: {
+    datasetConfigsList: function () {
+      // Return a list of configs for the dropdown list
+      console.log('Implement me in the datasetConfigsList')
+      return 'sdfsdfsdf'
     }
+  },
+  methods: {
+    saveName () {
+      // Create a new empty ML config object after user enters a name
+      console.log('Implement me in the saveName')
+    }
+  },
+  created: function () {
+    // check for the existing ml Config
+    let modelName = this.$route.params.model_name
+    if (modelName) {
+      console.log('Implement me!!!!!!!')
+    }
+  }
 }
 </script>
 
