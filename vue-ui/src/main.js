@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import httpConfig from './resource'
 import './element-ui'
+import './form-generator'
 
 Vue.config.productionTip = false
 
