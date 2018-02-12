@@ -15,13 +15,19 @@
             <el-form-item label="Date From:">
                 <el-date-picker
                 v-model="datasetConfigObj.start_date"
-                type="date">
+                type="date"
+                :clearable="false"
+                format="dd/MM/yyyy"
+                value-format="yyyy-MM-dd">
                 </el-date-picker>
             </el-form-item>
             <el-form-item label="Date To:">
                 <el-date-picker
                 v-model="datasetConfigObj.end_date"
-                type="date">
+                type="date"
+                format="dd/MM/yyyy"
+                :clearable="false"
+                value-format="yyyy-MM-dd">
                 </el-date-picker>
             </el-form-item>
             <el-button type="primary" v-if="showButton" @click="handleClick">
