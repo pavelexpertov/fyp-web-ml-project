@@ -20,7 +20,7 @@ let dataConfigModule = {
   getters: {
     getDataConfigObjByName: (state) => (configObjName) => {
       let index = _.findIndex(state.data_configs_obj_list, {'name': configObjName})
-      if (index !== -1) { return state.data_configs_obj_list[index].data_config_obj } else { console.log("Something's wrong in the getDataConfigObjByName") }
+      if (index !== -1) { return state.data_configs_obj_list[index].data_config_obj } else { return null }
     },
     getDataConfigNamesList: (state) => {
       let namesList = []
@@ -48,7 +48,6 @@ let mlConfigModule = {
     saveDataConfigNameByName (state, passedDict) {
       let configList = state.ml_config_obj_list
       let index = _.findIndex(configList, {name: passedDict.ml_name})
-      console.log('index', index)
       if (index !== -1) {
         configList[index].dataset_config_name = passedDict.data_name
       } else {

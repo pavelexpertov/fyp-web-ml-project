@@ -17,12 +17,11 @@ export default {
         this.dataConfigName = modelName
         let configObj = this.$store.getters.getDataConfigObjByName(modelName)
         this.dataConfigObject = configObj
-      } else if (this.dataConfigName && this.mlConfigName) {
-        console.log('I have been called')
+      } else if (this.mlConfigName) {
         let configObj = this.$store.getters.getDataConfigObjByName(this.dataConfigName)
-        this.dataConfigObject = configObj
+        if (configObj) { this.dataConfigObject = configObj } else { this.dataConfigObject = '' }
       } else {
-        console.log("Something's wrong in data mixin's getDataConfig", modelName)
+        console.log("Something's wrong in data mixin's getDataConfig, unless, an empty data config object is being set. Modelname", modelName)
       }
     }
   }
