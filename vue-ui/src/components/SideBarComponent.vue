@@ -2,32 +2,32 @@
     <el-aside width="200px">
         <el-menu>
             <el-menu-item-group title="Dataset Settings" index="1">
-                <el-menu-item
-                v-for="item in dataSetList"
-                :key="item.name"
-                :index="item.index"
-                >
-                {{item.name}}
-                </el-menu-item>
-                <el-menu-item index="add-data-button">
+                <router-link v-for="item in dataSetList" :key="item.index" :to="'dataset-config-panel/'+item.name">
+                    <el-menu-item
+                    :index="item.index"
+                    >
+                        {{item.name}}
+                    </el-menu-item>
+                </router-link>
+                <router-link to="dataset-config-panel">
                     <el-button>
                         Add
                     </el-button>
-                </el-menu-item>
+                </router-link>
             </el-menu-item-group>
             <el-menu-item-group title="ML Algorithm Playground" index="2">
-                <el-menu-item
-                v-for="item in mlConfigList"
-                :key="item.name"
-                :index="item.index"
-                >
-                {{item.name}}
-                </el-menu-item>
-                <el-menu-item index="add-ml-button">
+                <router-link v-for="item in mlConfigList" :key="item.index" :to="'ml-playground-panel/'+item.name">
+                    <el-menu-item
+                    :index="item.index"
+                    >
+                        {{item.name}}
+                    </el-menu-item>
+                </router-link>
+                <router-link to="ml-playground-panel">
                     <el-button>
                         Add
                     </el-button>
-                </el-menu-item>
+                </router-link>
             </el-menu-item-group>
         </el-menu>
     </el-aside>
@@ -47,7 +47,7 @@ export default {
     dataSetList () {
       // let l = ['one', 'two', 'three']
       // this.$store.state.ml.commit('addMlConfigObj', 'new name', {name: 23234})
-      this.$store.commit('addMlConfigObj', 'new name', {name: 23234})
+      // this.$store.commit('addMlConfigObj', 'new name', {name: 23234})
       let l = this.$store.getters.getDataConfigNamesList
       _.forEach(l, (value, index, collection) => { collection[index] = {name: value, index: '1-' + index} })
       return l
