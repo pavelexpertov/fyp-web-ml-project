@@ -26,12 +26,12 @@ export default new Router({
       component: DataFeatureAnalysisView
     },
     {
-      path: '/ml-config-panel',
+      path: '/ml-playground-panel',
       name: 'NewMlConfigPanel',
       component: MlPlaygroundNameFormView
     },
     {
-      path: '/ml-config-panel/:model_name',
+      path: '/ml-playground-panel/:model_name',
       name: 'MlConfigPanel',
       component: MlPlaygroundView
     }

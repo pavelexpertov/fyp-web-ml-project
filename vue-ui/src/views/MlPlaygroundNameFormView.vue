@@ -17,11 +17,11 @@ export default {
     saveName () {
       // Create a new empty ML config object after user enters a name
       let defaultConfig = { json_form_fields_dict: '', settings_values: '', name: '' }
-      let dict = {name: this.newDataConfigName, data_config_name: '', config: defaultConfig}
-      this.$store.commit('addDataConfigObj', dict)
+      let dict = {name: this.newMlConfigName, dataset_config_name: '', config: defaultConfig}
+      this.$store.commit('addMlConfigObj', dict)
       // Setting the config object within instance
       // Move to an appended route
-      this.$router.push('ml-config-panel/' + dict.name)
+      this.$router.push('ml-playground-panel/' + dict.name)
     }
   }
 }
