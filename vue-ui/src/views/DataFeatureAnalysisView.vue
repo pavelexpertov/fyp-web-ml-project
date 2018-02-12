@@ -4,6 +4,7 @@
             <data-set-configurations-panel
             :datasetConfigObj="dataConfigObject"
             :showButton="true"
+            @click="executeQuery"
             >
             </data-set-configurations-panel>
         </el-col>
@@ -43,6 +44,9 @@ export default {
       } else {
         console.log("Something's wrong", modelName)
       }
+    },
+    executeQuery () {
+      console.log('Implement me!!!!!')
     }
   },
   created () {
