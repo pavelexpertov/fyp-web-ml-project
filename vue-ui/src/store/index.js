@@ -38,11 +38,17 @@ let mlConfigModule = {
   },
   mutations: {
     addMlConfigObj (state, passedDict) {
-      state.ml_config_obj_list.push({name: passedDict.name, ml_config_obj: passedDict.config})
+      state.ml_config_obj_list.push({name: passedDict.name, ml_config_obj: passedDict.config, dataset_config_name: passedDict.dataset_config_name})
     },
     saveMlConfigObjByName (state, passedDict) {
       let index = _.findIndex(state.ml_configs_obj_list, {name: passedDict.name})
-      if (index !== -1) { state.ml_configs_obj_list[index].data_config_obj = passedDict.config } else { console.log("Something's wrong when config was trying to be saved") }
+      if (index !== -1) { state.ml_configs_obj_list[index].ml_config_obj = passedDict.config } else { console.log("Something's wrong when config was trying to be saved") }
+    },
+    saveDataConfigNameByName (state, passedDict) {
+      let index = _.findIndex(state.ml_configs_obj_list, {dataset_config_name: passedDict.ml_name})
+      if (index !== -1) {
+        state.ml_configs_obj_list[index].dataset_config_name = passedDict.data_name
+      }
     }
   },
   getters: {
@@ -56,6 +62,10 @@ let mlConfigModule = {
     getMlConfigObjByName: (state) => (mlConfigName) => {
       let index = _.findIndex(state.ml_config_obj_list, {name: mlConfigName})
       if (index !== -1) { return state.ml_config_obj_list[index] } else { console.log("Something's wrong happened in getMlConfigObjByName") }
+    },
+    getDataConfigNameByName: (state) => (datasetConfigName) => {
+      let index = _.findIndex(state.ml_config_obj_list, {name: datasetConfigName})
+      if (index !== -1) { return state.ml_config_obj_list[index].dataset_config_name } else { console.log("Something's wrong happened in getDataConfigObjByName in ml mixin") }
     }
   }
 }

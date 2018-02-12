@@ -2,7 +2,8 @@ export default {
   data () {
     return {
       mlConfigObject: '',
-      mlConfigName: ''
+      mlConfigName: '',
+      dataConfigName: ''
     }
   },
   methods: {
