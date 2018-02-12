@@ -15,7 +15,6 @@ export default {
     // console.log("I am called when the router is pushed")
       let modelName = this.$route.params.model_name
       this.mlConfigName = modelName
-      console.log(modelName)
       if (modelName) {
         let configObj = this.$store.getters.getMlConfigObjByName(modelName)
         this.mlConfigObject = configObj

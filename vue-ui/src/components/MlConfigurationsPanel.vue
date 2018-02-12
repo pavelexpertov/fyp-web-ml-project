@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import MlAlgorithmsDropDownList from './components/MlAlgorithmsDropDownList'
+import MlAlgorithmsDropDownList from '@/components/MlAlgorithmsDropDownList'
 export default {
   name: 'MlConfigurationsPanel',
   data () {
