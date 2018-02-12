@@ -39,6 +39,10 @@ let mlConfigModule = {
   mutations: {
     addMlConfigObj (state, passedDict) {
       state.ml_config_obj_list.push({name: passedDict.name, ml_config_obj: passedDict.config})
+    },
+    saveMlConfigObjByName (state, passedDict) {
+      let index = _.findIndex(state.ml_configs_obj_list, {name: passedDict.name})
+      if (index !== -1) { state.ml_configs_obj_list[index].data_config_obj = passedDict.config } else { console.log("Something's wrong when config was trying to be saved") }
     }
   },
   getters: {
