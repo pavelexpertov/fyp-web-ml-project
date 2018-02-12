@@ -21,8 +21,7 @@ export default new Router({
     {
       path: '/dataset-config-panel/:model_name',
       name: 'DataConfigPanel',
-      component: DataFeatureAnalysisView,
-      meta: { reuse: false }
+      component: DataFeatureAnalysisView
     }
   ]
 })

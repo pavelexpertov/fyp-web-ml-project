@@ -27,21 +27,34 @@ export default {
   components: {
     dataSetConfigurationsPanel: DataSetConfigurationsPanel
   },
-  created () {
-    // console.log("I am called when the router is pushed")
-    let modelName = this.$route.params.model_name
-    console.log(modelName)
-    if (modelName) {
-      let configObj = this.$store.getters.getDataConfigObjByName(modelName)
-      this.dataConfigObject = configObj
+  methods: {
+    saveDataConfig () {
+      let dict = { name: this.dataConfigName, config: this.dataConfigObject }
+      this.$store.commit('saveDataConfigObjByName', dict)
+    },
+    getDataConfig () {
+      // console.log("I am called when the router is pushed")
+      let modelName = this.$route.params.model_name
       this.dataConfigName = modelName
-    } else {
-      console.log("Something's wrong", modelName)
+      console.log(modelName)
+      if (modelName) {
+        let configObj = this.$store.getters.getDataConfigObjByName(modelName)
+        this.dataConfigObject = configObj
+      } else {
+        console.log("Something's wrong", modelName)
+      }
     }
   },
+  created () {
+    this.getDataConfig()
+  },
   beforeDestroy () {
-    let dict = { name: this.dataConfigName, config: this.dataConfigObject }
-    this.$store.commit('saveDataConfigObjByName', dict)
+    this.saveDataConfig()
+  },
+  beforeRouteUpdate (to, from, next) {
+    this.saveDataConfig()
+    next()
+    this.getDataConfig()
   }
 }
 </script>

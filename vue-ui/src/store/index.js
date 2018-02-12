@@ -19,9 +19,7 @@ let dataConfigModule = {
   },
   getters: {
     getDataConfigObjByName: (state) => (configObjName) => {
-      console.log('within the get dataconfig obj', configObjName)
       let index = _.findIndex(state.data_configs_obj_list, {'name': configObjName})
-      console.log(index)
       if (index !== -1) { return state.data_configs_obj_list[index].data_config_obj } else { console.log("Something's wrong in the getDataConfigObjByName") }
     },
     getDataConfigNamesList: (state) => {
