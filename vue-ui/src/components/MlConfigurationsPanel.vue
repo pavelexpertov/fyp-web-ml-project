@@ -1,9 +1,9 @@
 <template>
     <div>
         <h2>{{mlConfigurationsObj.name}}</h2>
-        <ml-algorithms-drop-down-list :selectedAlgorithm="selectedMlObj" @selectedItem="ml_al_obj => handleSelectedItem(ml_al_obj)">
+        <ml-algorithms-drop-down-list :selectedAlgorithmName="mlConfigurationsObj.name" @selectedItem="ml_al_obj => handleSelectedItem(ml_al_obj)">
         </ml-algorithms-drop-down-list>
-        <vue-form-generator :schema="selectedMlObj.json_form_fields_dict" :model="selectedMlObj.settings_values" :options="formOptions">
+        <vue-form-generator :schema="mlConfigurationsObj.settings_form_schema" :model="mlConfigurationsObj.settings_values" :options="formOptions">
         </vue-form-generator>
     </div>
 </template>
@@ -14,8 +14,6 @@ export default {
   name: 'MlConfigurationsPanel',
   data () {
     return {
-      newName: 'Enter a new name for the configuration',
-      selectedMlObj: {},
       isMlModelBuilt: false,
       formOptions: {
         validateAfterLoad: false,
@@ -33,7 +31,7 @@ export default {
   },
   methods: {
     handleSelectedItem: function (mlAlgorithmObj) {
-      console.log('Got the selected ml algorithm!!!!', mlAlgorithmObj)
+        this.$emit('selectedMlAlgorithm', mlAlgorithmObj)
     }
   },
   props: {

@@ -16,7 +16,7 @@ export default {
   methods: {
     saveName () {
       // Create a new empty ML config object after user enters a name
-      let defaultConfig = { json_form_fields_dict: '', settings_values: '', name: '' }
+      let defaultConfig = { settings_form_schema: '', settings_values: '', name: '' }
       let dict = {name: this.newMlConfigName, dataset_config_name: '', config: defaultConfig}
       this.$store.commit('addMlConfigObj', dict)
       // Setting the config object within instance

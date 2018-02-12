@@ -5,6 +5,7 @@
         <el-row>
             <ml-configurations-panel
             :mlConfigurationsObj="mlConfigObject"
+            @selectedMlAlgorithm="ml_obj => handleSelectedAlgorithm(ml_obj)"
             >
             </ml-configurations-panel>
         </el-row>
@@ -50,6 +51,9 @@ export default {
     getDataAndMlConfig () {
       this.getMlConfig()
       this.getDataConfig()
+  },
+    handleSelectedAlgorithm(mlAlgorithmObj){
+        this.mlConfigObject = mlAlgorithmObj
     }
   },
   computed: {
