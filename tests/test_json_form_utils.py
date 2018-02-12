@@ -49,6 +49,7 @@ class TestCreateJsonSchemaFieldFunction(unittest.TestCase):
             'type': 'input',
             'label': self.test_doc5['name'],
             'model': self.test_doc5['name'],
+            'inputType': 'text'
         }
 
     def test_with_string_type(self):

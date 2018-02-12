@@ -13,7 +13,7 @@ def create_json_schema_field(field_name, actual_value, required=True):
     elif type(actual_value) is bool:
         schema_field_dict['type'] = 'checkbox'
     elif actual_value is None:
-        pass
+        schema_field_dict['inputType'] = 'text'
     else:
         raise UnrecognisedTypeError(actual_value, field_name)
     return schema_field_dict
