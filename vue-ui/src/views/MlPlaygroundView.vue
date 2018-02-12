@@ -42,24 +42,14 @@ export default {
   methods: {
     handleSelectedDatasetName () {
       this.dataConfigObject = this.$store.getters.getDataConfigObjByName(this.dataConfigName)
-      },
-      saveDataAndMlConfig () {
-          this.saveMlConfig()
-          this.saveDataConfig()
-      },
-      getDataAndMlConfig () {
-        // check for the existing ml Config
-        let modelName = this.$route.params.model_name
-        if (modelName) {
-          let config = this.$store.getters.getMlConfigObjByName(modelName)
-          let datasetName = this.$store.getters.getDataConfigNameByMlName(modelName)
-          this.mlConfigObject = config
-          this.mlConfigName = modelName
-          this.dataConfigName = datasetName
-          this.getDataConfig()
-        } else {
-          console.log("Something's wrong in mlplaygrnd", modelName)
-        }
+    },
+    saveDataAndMlConfig () {
+      this.saveMlConfig()
+      this.saveDataConfig()
+    },
+    getDataAndMlConfig () {
+      this.getMlConfig()
+      this.getDataConfig()
     }
   },
   computed: {
@@ -70,16 +60,16 @@ export default {
     }
   },
   created: function () {
-      this.getDataAndMlConfig()
+    this.getDataAndMlConfig()
   },
   beforeDestroy () {
-      this.saveDataAndMlConfig()
+    this.saveDataAndMlConfig()
   },
   beforeRouteUpdate (to, from, next) {
     this.saveDataAndMlConfig()
     next()
     this.getDataAndMlConfig()
-},
+  },
   mixins: [mlMixin, dataMixin]
 }
 </script>

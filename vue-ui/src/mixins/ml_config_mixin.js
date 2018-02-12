@@ -10,7 +10,7 @@ export default {
     saveMlConfig () {
       let dict = { name: this.mlConfigName, config: this.mlConfigObject }
       this.$store.commit('saveMlConfigObjByName', dict)
-      dict = { ml_name: this.mlConfigName, data_name: this.mlConfigObject }
+      dict = { ml_name: this.mlConfigName, data_name: this.dataConfigName }
       this.$store.commit('saveDataConfigNameByName', dict)
     },
     getMlConfig () {
@@ -20,6 +20,7 @@ export default {
         this.mlConfigName = modelName
         let configObj = this.$store.getters.getMlConfigObjByName(modelName)
         this.mlConfigObject = configObj
+        this.dataConfigName = this.$store.getters.getDataConfigNameByMlName(this.mlConfigName)
       } else {
         console.log("Something's wrong", modelName)
       }
