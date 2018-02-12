@@ -9,12 +9,12 @@
             </ml-configurations-panel>
         </el-row>
         <el-row>
-            <el-select v-model="dataConfigObject" placeholder="Select a dataconfig">
+            <el-select v-model="dataConfigName" placeholder="Select a dataconfig" @change="handleSelectedDatasetName">
                 <el-option
-                v-for="data_config in datasetConfigsList"
-                :key="data_config.name"
-                :label="data_config.name"
-                :value="data_config">
+                v-for="name in datasetNamesList"
+                :key="name"
+                :label="name"
+                :value="name">
                 </el-option>
             </el-select>
             <data-set-configurations-panel
@@ -39,18 +39,28 @@ export default {
     mlConfigurationsPanel: MlConfigurationsPanel,
     dataSetConfigurationsPanel: DataSetConfigurationsPanel
   },
+  methods: {
+    handleSelectedDatasetName () {
+      this.dataConfigObject = this.$store.getters.getDataConfigObjByName(this.dataConfigName)
+    }
+  },
   computed: {
-    datasetConfigsList: function () {
+    datasetNamesList: function () {
       // Return a list of configs for the dropdown list
-      console.log('Implement me in the datasetConfigsList')
-      return 'sdfsdfsdf'
+      let namesList = this.$store.getters.getDataConfigNamesList
+      return namesList
     }
   },
   created: function () {
     // check for the existing ml Config
     let modelName = this.$route.params.model_name
     if (modelName) {
-      console.log('Implement me!!!!!!!')
+      let config = this.$store.getters.getMlConfigObjByName(modelName)
+      let datasetName = this.$store.getters.getDataConfigNameByMlName(modelName)
+      this.mlConfigObject = config
+      this.mlConfigName = modelName
+      this.dataConfigName = datasetName
+      this.getDataConfig()
     } else {
       console.log("Something's wrong in mlplaygrnd", modelName)
     }

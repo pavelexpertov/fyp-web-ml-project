@@ -49,12 +49,14 @@ export default {
       // this.$store.state.ml.commit('addMlConfigObj', 'new name', {name: 23234})
       // this.$store.commit('addMlConfigObj', 'new name', {name: 23234})
       let l = this.$store.getters.getDataConfigNamesList
+      l = l.slice()
       _.forEach(l, (value, index, collection) => { collection[index] = {name: value, index: '1-' + index} })
       return l
     },
     mlConfigList () {
       // let l = ['two', '242', '3452']
       let l = this.$store.getters.getMlConfigNameList
+      l = l.slice()
       _.forEach(l, (value, index, collection) => { collection[index] = { name: value, index: '2-' + index } })
       return l
     }

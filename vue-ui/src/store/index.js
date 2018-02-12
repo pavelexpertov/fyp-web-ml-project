@@ -63,7 +63,7 @@ let mlConfigModule = {
       let index = _.findIndex(state.ml_config_obj_list, {name: mlConfigName})
       if (index !== -1) { return state.ml_config_obj_list[index] } else { console.log("Something's wrong happened in getMlConfigObjByName") }
     },
-    getDataConfigNameByName: (state) => (datasetConfigName) => {
+    getDataConfigNameByMlName: (state) => (datasetConfigName) => {
       let index = _.findIndex(state.ml_config_obj_list, {name: datasetConfigName})
       if (index !== -1) { return state.ml_config_obj_list[index].dataset_config_name } else { console.log("Something's wrong happened in getDataConfigObjByName in ml mixin") }
     }
