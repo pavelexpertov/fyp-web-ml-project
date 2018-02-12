@@ -54,7 +54,7 @@ let mlConfigModule = {
 
 export default new Vuex.Store({
   modules: {
-    mlConfigModule,
-    dataConfigModule
+    ml: mlConfigModule,
+    data: dataConfigModule
   }
 })
