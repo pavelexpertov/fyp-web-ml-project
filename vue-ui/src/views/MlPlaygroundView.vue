@@ -3,12 +3,7 @@
         <el-row>
         </el-row>
         <el-row>
-            <template v-if="!mlConfigObject">
-                <el-input v-model="newMlConfigName" placeholder="Enter a new name for ML configuration"></el-input>
-                <el-button @click="saveName">Save</el-button>
-            </template>
             <ml-configurations-panel
-            v-else
             :mlConfigurationsObj="mlConfigObject"
             >
             </ml-configurations-panel>
@@ -33,18 +28,13 @@
 </template>
 
 <script>
-import MlConfigurationsPanel from '@components/MlConfigurationsPanel'
-import DataSetConfigurationsPanel from '@components/DataSetConfigurationsPanel'
+import MlConfigurationsPanel from '@/components/MlConfigurationsPanel'
+import DataSetConfigurationsPanel from '@/components/DataSetConfigurationsPanel'
+import mlMixin from '@/mixins/ml_config_mixin'
+import dataMixin from '@/mixins/data_config_mixin'
 
 export default {
   name: 'MlPlaygroundView',
-  data () {
-    return {
-      mlConfigObject: '',
-      dataConfigObject: '',
-      newMlConfigName: ''
-    }
-  },
   components: {
     mlConfigurationsPanel: MlConfigurationsPanel,
     dataSetConfigurationsPanel: DataSetConfigurationsPanel
@@ -56,19 +46,19 @@ export default {
       return 'sdfsdfsdf'
     }
   },
-  methods: {
-    saveName () {
-      // Create a new empty ML config object after user enters a name
-      console.log('Implement me in the saveName')
-    }
-  },
   created: function () {
     // check for the existing ml Config
     let modelName = this.$route.params.model_name
     if (modelName) {
       console.log('Implement me!!!!!!!')
+    } else {
+      console.log("Something's wrong in mlplaygrnd", modelName)
     }
-  }
+  },
+  beforeDestroy () {
+    console.log('implement me')
+  },
+  mixins: [mlMixin, dataMixin]
 }
 </script>
 

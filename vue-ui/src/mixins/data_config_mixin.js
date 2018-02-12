@@ -13,9 +13,12 @@ export default {
     getDataConfig () {
     // console.log("I am called when the router is pushed")
       let modelName = this.$route.params.model_name
-      this.dataConfigName = modelName
-      console.log(modelName)
       if (modelName) {
+        this.dataConfigName = modelName
+        let configObj = this.$store.getters.getDataConfigObjByName(modelName)
+        this.dataConfigObject = configObj
+      } else if (this.dataConfigName) {
+        console.log('I have been called')
         let configObj = this.$store.getters.getDataConfigObjByName(modelName)
         this.dataConfigObject = configObj
       } else {
