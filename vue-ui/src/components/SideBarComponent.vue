@@ -2,28 +2,28 @@
     <el-aside width="200px">
         <el-menu>
             <el-menu-item-group title="Dataset Settings" index="1">
-                <router-link v-for="item in dataSetList" :key="item.index" :to="'dataset-config-panel/'+item.name">
+                <router-link v-for="item in dataSetList" :key="item.index" :to="'/dataset-config-panel/'+item.name">
                     <el-menu-item
                     :index="item.index"
                     >
                         {{item.name}}
                     </el-menu-item>
                 </router-link>
-                <router-link to="dataset-config-panel">
+                <router-link to="/dataset-config-panel">
                     <el-button>
                         Add
                     </el-button>
                 </router-link>
             </el-menu-item-group>
             <el-menu-item-group title="ML Algorithm Playground" index="2">
-                <router-link v-for="item in mlConfigList" :key="item.index" :to="'ml-playground-panel/'+item.name">
+                <router-link v-for="item in mlConfigList" :key="item.index" :to="'/ml-playground-panel/'+item.name">
                     <el-menu-item
                     :index="item.index"
                     >
                         {{item.name}}
                     </el-menu-item>
                 </router-link>
-                <router-link to="ml-playground-panel">
+                <router-link to="/ml-playground-panel">
                     <el-button>
                         Add
                     </el-button>

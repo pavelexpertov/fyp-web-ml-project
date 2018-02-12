@@ -4,7 +4,7 @@
             <el-form-item label="StoreId">
                 <el-select v-model="datasetConfigObj.store_number">
                     <el-option
-                    v-for="store_number in storeidList"
+                    v-for="store_number in storeIdList"
                     :key="store_number"
                     :label="store_number"
                     :value="store_number"
@@ -31,6 +31,7 @@
         <el-transfer
           v-model="datasetConfigObj.features_list"
           :data="featureNamesList"
+          class="transfer-class"
         >
         </el-transfer>
     </div>
@@ -82,6 +83,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.transfer-class {
+    text-align: left;
+}
 </style>

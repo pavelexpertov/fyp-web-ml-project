@@ -9,13 +9,19 @@ let dataConfigModule = {
     data_configs_obj_list: []
   },
   mutations: {
-    addDataConfigObj (state, configName, dataConfigObj) {
-      state.data_configs_obj_list.push({name: configName, data_config_obj: dataConfigObj})
+    addDataConfigObj (state, passedDict) {
+      state.data_configs_obj_list.push({name: passedDict.name, data_config_obj: passedDict.config})
+    },
+    saveDataConfigObjByName (state, passedDict) {
+      let index = _.findIndex(state.data_configs_obj_list, {name: passedDict.name})
+      if (index !== -1) { state.data_configs_obj_list[index].data_config_obj = passedDict.config } else { console.log("Something's wrong when config was trying to be saved") }
     }
   },
   getters: {
     getDataConfigObjByName: (state) => (configObjName) => {
+      console.log('within the get dataconfig obj', configObjName)
       let index = _.findIndex(state.data_configs_obj_list, {'name': configObjName})
+      console.log(index)
       if (index !== -1) { return state.data_configs_obj_list[index].data_config_obj } else { console.log("Something's wrong in the getDataConfigObjByName") }
     },
     getDataConfigNamesList: (state) => {
@@ -33,8 +39,8 @@ let mlConfigModule = {
     ml_config_obj_list: []
   },
   mutations: {
-    addMlConfigObj (state, newMlConfigName, newMlConfigObj) {
-      state.ml_config_obj_list.push({name: newMlConfigName, ml_config_obj: newMlConfigObj})
+    addMlConfigObj (state, passedDict) {
+      state.ml_config_obj_list.push({name: passedDict.name, ml_config_obj: passedDict.config})
     }
   },
   getters: {
