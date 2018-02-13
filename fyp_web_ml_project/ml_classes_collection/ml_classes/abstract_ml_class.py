@@ -32,7 +32,7 @@ class AbstractMlClass:
         '''Return a predicted value based on provided prediction values'''
         fd = features_prediction_values_json
         features_list = [fd[feature_name]
-                         for feature_name in self.get_feature_names_list()]
+                         for feature_name in self.feature_names_list]
         prediction_array = self.estimator.predict([features_list])
         return list(prediction_array)[0]
 
