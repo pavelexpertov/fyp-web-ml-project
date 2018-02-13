@@ -32,9 +32,9 @@ def get_model_parameters_dict(ml_model_name):
 
 
 def get_model_training_feature_list(ml_model_name):
-    '''Return a list of features lists that were used in training'''
+    '''Return a list of features names and corresponding values that were used in training'''
     try:
-        return ml_models_dict[ml_model_name].get_feature_names_list()
+        return ml_models_dict[ml_model_name].get_feature_names_and_values_list()
     except KeyError as exc:
         raise NotFoundMlModelError(ml_model_name) from exc
 
