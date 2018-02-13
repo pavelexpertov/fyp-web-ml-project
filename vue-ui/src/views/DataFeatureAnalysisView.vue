@@ -1,4 +1,6 @@
 <template>
+    <div>
+    <h2>{{dataConfigName}}</h2>
     <el-row>
         <el-col :span="8">
             <data-set-configurations-panel
@@ -12,6 +14,7 @@
             <p> Here's supposed to be the chart viewer, but I am not implemented just yet</p>
         </el-col>
     </el-row>
+    </div>
 </template>
 
 <script>

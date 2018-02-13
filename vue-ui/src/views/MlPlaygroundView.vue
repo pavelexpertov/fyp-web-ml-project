@@ -1,15 +1,19 @@
 <template>
     <div>
+        <h2>{{mlConfigName}}</h2>
         <el-row>
         </el-row>
         <el-row>
+            <h3>Selected Algorithm: </h3>
             <ml-configurations-panel
             :mlConfigurationsObj="mlConfigObject"
             @selectedMlAlgorithm="ml_obj => handleSelectedAlgorithm(ml_obj)"
+            @handleBuildButtonClick="handleBuildButtonClick"
             >
             </ml-configurations-panel>
         </el-row>
         <el-row>
+            <h3>Selected Dataset: {{dataConfigName}}</h3>
             <el-select v-model="dataConfigName" placeholder="Select a dataconfig" @change="handleSelectedDatasetName">
                 <el-option
                 v-for="name in datasetNamesList"
@@ -41,6 +45,31 @@ export default {
     dataSetConfigurationsPanel: DataSetConfigurationsPanel
   },
   methods: {
+    handleBuildButtonClick () {
+      let dataQueryJson = this.dataConfigObject
+      let mlClassName = this.mlConfigObject.name
+      let settingsJson = this.mlConfigObject.settings_values
+      let jsonRequest = {
+        ml_class_name: mlClassName,
+        settings_json: settingsJson,
+        dataset_query_json: dataQueryJson
+      }
+      let modelName = this.mlConfigName
+      this.$http.post('mlmodels/' + modelName, jsonRequest)
+        .then(response => {
+          this.$notify({
+            title: 'Successfully Built',
+            message: this.mlConfigName + ' is built.',
+            duration: 2500
+          })
+          this.$http.get('mlmodels/' + modelName + '/predictions')
+            .then(response => {
+              console.log(response.body)
+            })
+            .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+    },
     handleSelectedDatasetName () {
       this.dataConfigObject = this.$store.getters.getDataConfigObjByName(this.dataConfigName)
     },
@@ -51,9 +80,9 @@ export default {
     getDataAndMlConfig () {
       this.getMlConfig()
       this.getDataConfig()
-  },
-    handleSelectedAlgorithm(mlAlgorithmObj){
-        this.mlConfigObject = mlAlgorithmObj
+    },
+    handleSelectedAlgorithm (mlAlgorithmObj) {
+      this.mlConfigObject = mlAlgorithmObj
     }
   },
   computed: {

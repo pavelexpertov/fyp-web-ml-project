@@ -1,10 +1,12 @@
 <template>
     <div>
-        <h2>{{mlConfigurationsObj.name}}</h2>
         <ml-algorithms-drop-down-list :selectedAlgorithmName="mlConfigurationsObj.name" @selectedItem="ml_al_obj => handleSelectedItem(ml_al_obj)">
         </ml-algorithms-drop-down-list>
         <vue-form-generator :schema="mlConfigurationsObj.settings_form_schema" :model="mlConfigurationsObj.settings_values" :options="formOptions">
         </vue-form-generator>
+        <el-button type="primary" @click="handleClickButton">
+            {{buttonText}}
+        </el-button>
     </div>
 </template>
 
@@ -26,12 +28,15 @@ export default {
       return this.mlConfigurationsObj.name
     },
     buttonText: function () {
-      return this.isMlModelBuilt ? 'Build' : 'Rebuild'
+      return this.isMlModelBuilt ? 'Rebuild' : 'Build'
     }
   },
   methods: {
     handleSelectedItem: function (mlAlgorithmObj) {
-        this.$emit('selectedMlAlgorithm', mlAlgorithmObj)
+      this.$emit('selectedMlAlgorithm', mlAlgorithmObj)
+    },
+    handleClickButton () {
+      this.$emit('handleBuildButtonClick')
     }
   },
   props: {
