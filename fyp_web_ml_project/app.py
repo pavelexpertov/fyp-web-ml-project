@@ -85,6 +85,18 @@ def handle_untrained_ml_model(exc):
 def handle_unrecognised_type(exc):
     return _jsonify_error_json(exc), 500
 
+@app.errorhandler(exc_coll.NotFourKeysError)
+def handle_unrecognised_type(exc):
+    return _jsonify_error_json(exc), 500
+
+@app.errorhandler(exc_coll.MissingQueryKeyInJsonError)
+def handle_unrecognised_type(exc):
+    return _jsonify_error_json(exc), 500
+
+@app.errorhandler(exc_coll.MissingSettingParameterJsonError)
+def handle_unrecognised_type(exc):
+    return _jsonify_error_json(exc), 500
+
 def _jsonify_error_json(exc):
     '''Format the exception for JSON output'''
     return jsonify({'message': str(exc)})
