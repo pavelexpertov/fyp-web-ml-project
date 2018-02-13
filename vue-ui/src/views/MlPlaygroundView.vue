@@ -4,7 +4,9 @@
         <el-row>
             <ml-prediction-query-panel
             v-if="predictionSchemaDoc"
-            :predictionSchemaDoc="predictionSchemaDoc">
+            :predictionSchemaDoc="predictionSchemaDoc"
+            :predictedSales="predictedSales"
+            @predictionQueryClick="handlePredictionQueryClick">
             </ml-prediction-query-panel>
         </el-row>
         <el-row>
@@ -52,10 +54,20 @@ export default {
   },
   data () {
     return {
-      predictionSchemaDoc: ''
+      predictionSchemaDoc: '',
+      predictedSales: 0
     }
   },
   methods: {
+      handlePredictionQueryClick () {
+        let queryJson = this.predictionSchemaDoc.features_values
+        let modelName = this.mlConfigName
+        this.$http.post('mlmodels/' + modelName + '/predictions', queryJson)
+        .then(response => {
+            this.predictedSales = response.body.prediction
+        })
+        .catch(err => console.log(err))
+    },
     handleBuildButtonClick () {
       let dataQueryJson = this.dataConfigObject
       let mlClassName = this.mlConfigObject.name
