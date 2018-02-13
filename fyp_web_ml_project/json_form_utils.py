@@ -1,3 +1,4 @@
+import numpy
 
 def create_json_schema_field(field_name, actual_value, required=True):
     schema_field_dict = {
@@ -8,7 +9,7 @@ def create_json_schema_field(field_name, actual_value, required=True):
     }
     if type(actual_value) is str:
         schema_field_dict['inputType'] = 'text'
-    elif type(actual_value) is int or type(actual_value) is float:
+    elif type(actual_value) is int or type(actual_value) is float or type(actual_value) is numpy.float64:
         schema_field_dict['inputType'] = 'number'
     elif type(actual_value) is bool:
         schema_field_dict['type'] = 'checkbox'

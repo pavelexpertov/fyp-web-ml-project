@@ -1,5 +1,7 @@
 import unittest
 
+import numpy
+
 import fyp_web_ml_project.json_form_utils as json_form_utils
 
 
@@ -106,6 +108,21 @@ class TestCreateJsonSchemaFieldFunction(unittest.TestCase):
             d['name'], d['value'])
         self.assertEqual(returned_dict, test_doc_result,
                          "The returned generated schema field doesn't match")
+
+    def test_with_numpy_float_64(self):
+        '''Creating a field for a numpy float64'''
+        test_doc = {'name': 'test_name', 'value': numpy.float64(23.23)}
+        test_doc_result = {
+            'required': True,
+            'type': 'input',
+            'inputType': 'number',
+            'label': test_doc['name'],
+            'model': test_doc['name'],
+        }
+        d = test_doc
+        returned_dict = json_form_utils.create_json_schema_field(
+            d['name'], d['value'])
+        self.assertEqual(returned_dict, test_doc_result, 'Returned dict and test dict don\'t match')
 
     def test_raising_exception(self):
         '''Test for raising an exception when there's unknown type'''
