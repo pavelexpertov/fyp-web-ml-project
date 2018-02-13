@@ -2,6 +2,10 @@
     <div>
         <h2>{{mlConfigName}}</h2>
         <el-row>
+            <ml-prediction-query-panel
+            v-if="predictionSchemaDoc"
+            :predictionSchemaDoc="predictionSchemaDoc">
+            </ml-prediction-query-panel>
         </el-row>
         <el-row>
             <h3>Selected Algorithm: </h3>
@@ -35,6 +39,7 @@
 <script>
 import MlConfigurationsPanel from '@/components/MlConfigurationsPanel'
 import DataSetConfigurationsPanel from '@/components/DataSetConfigurationsPanel'
+import MlPredictionQueryPanel from '@/components/MlPredictionQueryPanel'
 import mlMixin from '@/mixins/ml_config_mixin'
 import dataMixin from '@/mixins/data_config_mixin'
 
@@ -42,7 +47,13 @@ export default {
   name: 'MlPlaygroundView',
   components: {
     mlConfigurationsPanel: MlConfigurationsPanel,
-    dataSetConfigurationsPanel: DataSetConfigurationsPanel
+    dataSetConfigurationsPanel: DataSetConfigurationsPanel,
+    mlPredictionQueryPanel: MlPredictionQueryPanel
+  },
+  data () {
+    return {
+      predictionSchemaDoc: ''
+    }
   },
   methods: {
     handleBuildButtonClick () {
@@ -64,7 +75,7 @@ export default {
           })
           this.$http.get('mlmodels/' + modelName + '/predictions')
             .then(response => {
-              console.log(response.body)
+              this.predictionSchemaDoc = response.body
             })
             .catch(err => console.log(err))
         })
