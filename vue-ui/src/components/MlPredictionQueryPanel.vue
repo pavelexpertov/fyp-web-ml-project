@@ -17,24 +17,24 @@ export default {
       formOptions: {
         validateAfterLoad: false,
         validateAfterChanged: false
-    }
+      }
     }
   },
   props: {
     predictionSchemaDoc: {
       type: Object,
       required: true
-  },
-  predictedSales: {
+    },
+    predictedSales: {
       type: Number,
       default: 0
-  }
-},
-methods: {
-    handleClick () {
-        this.$emit('predictionQueryClick')
     }
-}
+  },
+  methods: {
+    handleClick () {
+      this.$emit('predictionQueryClick')
+    }
+  }
 }
 </script>
 
