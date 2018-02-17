@@ -8,8 +8,6 @@
 </template>
 
 <script>
-// import * as _ from 'lodash'
-import * as moment from 'moment'
 import LineChartComponent from '@/components/LineChartComponent'
 
 export default {
@@ -17,7 +15,12 @@ export default {
   data () {
     return {
       options: {
-        responsive: true
+        responsive: true,
+        scales: {
+          xAxes: [{
+            type: 'time'
+          }]
+        }
       }
     }
   },
@@ -40,7 +43,6 @@ export default {
         let formattedDatasetDataPropertyList = []
         dataSetList.forEach(function (dataElement) {
           let datasetObj = {
-            //t: moment(dataElement[weeklyDateFieldKeyword]),
             t: dataElement[weeklyDateFieldKeyword],
             y: dataElement[fieldName]
           }

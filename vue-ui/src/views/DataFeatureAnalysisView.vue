@@ -37,16 +37,16 @@ export default {
   },
   methods: {
     executeQuery () {
-        //Make a copy of the dataConfigObject
-        let dataQuery = Object.assign({}, this.dataConfigObject)
-        let editedFeaturesList = dataQuery.features_list.slice()
-        editedFeaturesList.push('Date')
-        dataQuery.features_list = editedFeaturesList
-        this.$http.post('dataset', dataQuery)
+      // Make a copy of the dataConfigObject
+      let dataQuery = Object.assign({}, this.dataConfigObject)
+      let editedFeaturesList = dataQuery.features_list.slice()
+      editedFeaturesList.push('Date')
+      dataQuery.features_list = editedFeaturesList
+      this.$http.post('dataset', dataQuery)
         .then(response => {
-            let queryResultList = response.body
-            //console.log(queryResultList)
-            this.datasetList = queryResultList
+          let queryResultList = response.body
+          // console.log(queryResultList)
+          this.datasetList = queryResultList
         })
         .catch(err => console.log(err))
     }
