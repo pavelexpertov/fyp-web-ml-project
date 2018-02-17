@@ -11,13 +11,14 @@
             </data-set-configurations-panel>
         </el-col>
         <el-col :span="16">
-            <p> Here's supposed to be the chart viewer, but I am not implemented just yet</p>
+            <data-chart-viewer v-if="datasetList" :dataSetList="datasetList" :queryList="dataConfigObject.features_list"></data-chart-viewer>
         </el-col>
     </el-row>
     </div>
 </template>
 
 <script>
+import DataChartViewer from '@/components/DataChartViewer'
 import DataSetConfigurationsPanel from '@/components/DataSetConfigurationsPanel'
 import dataMixin from '@/mixins/data_config_mixin'
 
@@ -26,15 +27,28 @@ export default {
   data () {
     return {
       dataConfigObject: '',
-      dataConfigName: ''
+      dataConfigName: '',
+      datasetList: ''
     }
   },
   components: {
-    dataSetConfigurationsPanel: DataSetConfigurationsPanel
+    dataSetConfigurationsPanel: DataSetConfigurationsPanel,
+    dataChartViewer: DataChartViewer
   },
   methods: {
     executeQuery () {
-      console.log('Implement me!!!!!')
+        //Make a copy of the dataConfigObject
+        let dataQuery = Object.assign({}, this.dataConfigObject)
+        let editedFeaturesList = dataQuery.features_list.slice()
+        editedFeaturesList.push('Date')
+        dataQuery.features_list = editedFeaturesList
+        this.$http.post('dataset', dataQuery)
+        .then(response => {
+            let queryResultList = response.body
+            //console.log(queryResultList)
+            this.datasetList = queryResultList
+        })
+        .catch(err => console.log(err))
     }
   },
   mixins: [dataMixin],
@@ -45,6 +59,7 @@ export default {
     this.saveDataConfig()
   },
   beforeRouteUpdate (to, from, next) {
+    this.datasetList = ''
     this.saveDataConfig()
     next()
     this.getDataConfig()

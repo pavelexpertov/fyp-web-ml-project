@@ -59,12 +59,12 @@ export default {
     }
   },
   methods: {
-      handlePredictionQueryClick () {
-        let queryJson = this.predictionSchemaDoc.features_values
-        let modelName = this.mlConfigName
-        this.$http.post('mlmodels/' + modelName + '/predictions', queryJson)
+    handlePredictionQueryClick () {
+      let queryJson = this.predictionSchemaDoc.features_values
+      let modelName = this.mlConfigName
+      this.$http.post('mlmodels/' + modelName + '/predictions', queryJson)
         .then(response => {
-            this.predictedSales = response.body.prediction
+          this.predictedSales = response.body.prediction
         })
         .catch(err => console.log(err))
     },
