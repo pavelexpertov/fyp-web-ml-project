@@ -120,3 +120,6 @@ vue-ui/*.suo
 vue-ui/*.ntvs*
 vue-ui/*.njsproj
 vue-ui/*.sln
+
+# Vagrant specific folders and files
+.vagrant
