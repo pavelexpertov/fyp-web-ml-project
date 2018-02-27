@@ -1,10 +1,8 @@
 
 <template>
     <div>
-        <div v-for="dataObject in formattedDataObjectList" v-bind:key="dataObject.datasets[0].label">
-            <line-chart-component :chartData="dataObject" :options="options" :key="dataObject.datasets[0].label + 2">
-            </line-chart-component>
-        </div>
+        <line-chart-component :chartData="combinedDataObjectWithTwoDatasets" :options="options">
+        </line-chart-component>
     </div>
 </template>
 
@@ -12,7 +10,7 @@
 import LineChartComponent from '@/components/LineChartComponent'
 
 export default {
-  name: 'DataChartViewer',
+  name: 'CombinedDataChartViewer',
   data () {
     return {
       options: {
@@ -35,12 +33,12 @@ export default {
       required: true
     },
     selectedField1: {
-        type: String
-        required: true,
+      type: String,
+      required: true
     },
     selectedField2: {
-        type: String
-        required: true,
+      type: String,
+      required: true
     }
   },
   computed: {
@@ -68,21 +66,24 @@ export default {
         dataObjectList.push(dataObject)
       })
       return dataObjectList
-  },
-  combinedDataObjectWithTwoDatasets() {
+    },
+    combinedDataObjectWithTwoDatasets () {
       let formattedDataObjectList = this.formattedDataObjectList
       let selectedFieldList = [this.selectedField1, this.selectedField2]
       let selectedDatasetObjectList = []
-      selectedFieldList.forEach(function(fieldName){
-          formattedDataObjectList.forEach(function(dataObject){
-              let datasetObject = dataObject.datasets[0]
-              if(datasetObject.label === fieldName){
-                  selectedDatasetObjectList.push_back(datasetObject)
-              }
-          })
+      selectedFieldList.forEach(function (fieldName) {
+        formattedDataObjectList.forEach(function (dataObject) {
+          let datasetObject = dataObject.datasets[0]
+          if (datasetObject.label === fieldName) {
+            selectedDatasetObjectList.push(datasetObject)
+          }
+        })
       })
-      return selectedDatasetObjectList
-  }
+      let dataObject = {
+        datasets: selectedDatasetObjectList
+      }
+      return dataObject
+    }
   },
   components: {
     lineChartComponent: LineChartComponent

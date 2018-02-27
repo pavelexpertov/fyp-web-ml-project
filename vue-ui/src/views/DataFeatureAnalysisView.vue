@@ -34,13 +34,17 @@
             </div>
         </el-col>
         <el-col :span="16">
-            <data-chart-viewer v-if="datasetList" :dataSetList="datasetList" :queryList="dataConfigObject.features_list"></data-chart-viewer>
+            <data-chart-viewer v-if="datasetList && !isCombinedDatasetChartActive" :dataSetList="datasetList" :queryList="dataConfigObject.features_list"></data-chart-viewer>
+            <combined-data-chart-viewer v-else :dataSetList="datasetList" :queryList="dataConfigObject.features_list"
+            :selectedField1="selectedField1" :selectedField2="selectedField2">
+            </combined-data-chart-viewer>
         </el-col>
     </el-row>
     </div>
 </template>
 
 <script>
+import CombinedDataChartViewer from '@/components/CombinedDataChartViewer'
 import DataChartViewer from '@/components/DataChartViewer'
 import DataSetConfigurationsPanel from '@/components/DataSetConfigurationsPanel'
 import dataMixin from '@/mixins/data_config_mixin'
@@ -59,7 +63,8 @@ export default {
   },
   components: {
     dataSetConfigurationsPanel: DataSetConfigurationsPanel,
-    dataChartViewer: DataChartViewer
+    dataChartViewer: DataChartViewer,
+    combinedDataChartViewer: CombinedDataChartViewer
   },
   methods: {
     executeQuery () {
