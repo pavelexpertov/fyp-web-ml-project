@@ -71,10 +71,12 @@ export default {
       let formattedDataObjectList = this.formattedDataObjectList
       let selectedFieldList = [this.selectedField1, this.selectedField2]
       let selectedDatasetObjectList = []
+      let colourRgbaList = ['rgba(150, 0, 0, 0.1)', 'rgba(0, 150, 0, 0.1)']
       selectedFieldList.forEach(function (fieldName) {
         formattedDataObjectList.forEach(function (dataObject) {
           let datasetObject = dataObject.datasets[0]
           if (datasetObject.label === fieldName) {
+            datasetObject.backgroundColor = colourRgbaList.pop()
             selectedDatasetObjectList.push(datasetObject)
           }
         })
