@@ -9,6 +9,29 @@
             @click="executeQuery"
             >
             </data-set-configurations-panel>
+            <div>
+                <el-checkbox v-model="isCombinedDatasetChartActive">Use 2 dataset combined chart</el-checkbox>
+                <template v-if="isCombinedDatasetChartActive">
+                    <el-select v-model="selectedField1">
+                        <el-option
+                        v-for="feature in dataConfigObject.features_list"
+                        :key="feature"
+                        :label="feature"
+                        :value="feature"
+                        >
+                        </el-option>
+                    </el-select>
+                    <el-select v-model="selectedField2">
+                        <el-option
+                        v-for="feature in dataConfigObject.features_list"
+                        :key="feature"
+                        :label="feature"
+                        :value="feature"
+                        >
+                        </el-option>
+                    </el-select>
+                </template>
+            </div>
         </el-col>
         <el-col :span="16">
             <data-chart-viewer v-if="datasetList" :dataSetList="datasetList" :queryList="dataConfigObject.features_list"></data-chart-viewer>
@@ -28,7 +51,10 @@ export default {
     return {
       dataConfigObject: '',
       dataConfigName: '',
-      datasetList: ''
+      datasetList: '',
+      isCombinedDatasetChartActive: false,
+      selectedField1: '',
+      selectedField2: ''
     }
   },
   components: {
