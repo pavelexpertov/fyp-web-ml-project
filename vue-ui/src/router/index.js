@@ -5,6 +5,7 @@ import DataFeatureAnalysisView from '@/views/DataFeatureAnalysisView'
 import DataConfigNameFormView from '@/views/DataConfigNameFormView'
 import MlPlaygroundNameFormView from '@/views/MlPlaygroundNameFormView'
 import MlPlaygroundView from '@/views/MlPlaygroundView'
+import MlClassEditorView from '@/views/MlClassEditorView'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/ml-playground-panel/:model_name',
       name: 'MlConfigPanel',
       component: MlPlaygroundView
+    },
+    {
+      path: '/mlclasseditor',
+      name: 'MlClassEditor',
+      component: MlClassEditorView
     }
   ]
 })
