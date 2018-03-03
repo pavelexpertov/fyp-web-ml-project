@@ -24,7 +24,7 @@ class TestCheckQueryJson(unittest.TestCase):
         with self.assertRaises(Exception) as cm:
             self.test_function(self.five_keys_query_json)
 
-        self.assertEqual(str(cm.exception), "There's supposed to be 4 keys rather than 5")
+        self.assertEqual(str(cm.exception), "There's supposed to be 4 keys rather than 5 in query json")
 
 
     def test_less_keys_json(self):
@@ -32,7 +32,7 @@ class TestCheckQueryJson(unittest.TestCase):
         with self.assertRaises(Exception) as cm:
             self.test_function(self.three_keys_query_json)
 
-        self.assertEqual(str(cm.exception), "There's supposed to be 4 keys rather than 3")
+        self.assertEqual(str(cm.exception), "There's supposed to be 4 keys rather than 3 in query json")
 
 
     def test_wrong_keys_json(self):
