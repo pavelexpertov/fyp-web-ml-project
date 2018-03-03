@@ -29,6 +29,18 @@
                     </el-button>
                 </router-link>
             </el-menu-item-group>
+            <el-menu-item-group title="User ML Classes" index="3">
+                <router-link v-for="item in mlClassList" :key="item.index" :to="'/ml-class-editor/'+item.name">
+                    <el-menu-item
+                    :index="item.index"
+                    >
+                    {{item.name}}
+                    </el-menu-item>
+                </router-link>
+                <router-link to="/ml-class-editor">
+                    <el-button>Add</el-button>
+                </router-link>
+            </el-menu-item-group>
         </el-menu>
     </el-aside>
 </template>
@@ -45,19 +57,21 @@ export default {
   },
   computed: {
     dataSetList () {
-      // let l = ['one', 'two', 'three']
-      // this.$store.state.ml.commit('addMlConfigObj', 'new name', {name: 23234})
-      // this.$store.commit('addMlConfigObj', 'new name', {name: 23234})
       let l = this.$store.getters.getDataConfigNamesList
       l = l.slice()
       _.forEach(l, (value, index, collection) => { collection[index] = {name: value, index: '1-' + index} })
       return l
     },
     mlConfigList () {
-      // let l = ['two', '242', '3452']
       let l = this.$store.getters.getMlConfigNameList
       l = l.slice()
       _.forEach(l, (value, index, collection) => { collection[index] = { name: value, index: '2-' + index } })
+      return l
+    },
+    mlClassList () {
+      let l = this.$store.getters.getMlClassConfigObjNamesList
+      l = l.slice()
+      _.forEach(l, (value, index, collection) => { collection[index] = { name: value, index: '3-' + index } })
       return l
     }
   }

@@ -1,6 +1,6 @@
 <template>
     <div>
-    <codemirror class="code-style" v-model="textCode" :options="options" ref="myEditor"></codemirror>
+    <codemirror class="code-style" v-model="providedCodeText" :options="options" ref="myEditor"></codemirror>
 </div>
 </template>
 
@@ -32,8 +32,6 @@ export default {
     }
   },
   mounted () {
-    // this.editor.setOption('lineSeparator', '^SEPARATE^')
-    // console.log("hello:", this.editor.getOption('lineSeparator'))
     this.editor.setOption('extraKeys', {
       Tab: function (cm) {
         var spaces = Array(cm.getOption('indentUnit') + 1).join(' ')
@@ -44,6 +42,14 @@ export default {
   computed: {
     editor () {
       return this.$refs.myEditor.editor
+    },
+    providedCodeText: {
+      get () {
+        return this.codeText
+      },
+      set (updatedValue) {
+        this.$emit('saveCodeText', updatedValue)
+      }
     }
   }
 }

@@ -6,6 +6,7 @@ import DataConfigNameFormView from '@/views/DataConfigNameFormView'
 import MlPlaygroundNameFormView from '@/views/MlPlaygroundNameFormView'
 import MlPlaygroundView from '@/views/MlPlaygroundView'
 import MlClassEditorView from '@/views/MlClassEditorView'
+import MlClassNameFormView from '@/views/MlClassNameFormView'
 
 Vue.use(Router)
 
@@ -37,9 +38,15 @@ export default new Router({
       component: MlPlaygroundView
     },
     {
-      path: '/mlclasseditor',
+      path: '/ml-class-editor',
+      name: 'MlClassNameForm',
+      component: MlClassNameFormView
+    },
+    {
+      path: '/ml-class-editor/:class_name',
       name: 'MlClassEditor',
-      component: MlClassEditorView
+      component: MlClassEditorView,
+      props: true
     }
   ]
 })

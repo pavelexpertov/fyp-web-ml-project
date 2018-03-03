@@ -20,19 +20,20 @@ export default {
   methods: {
     handleCreateClick () {
       const className = this.mlClassName
-      const initialCode = `
-import sklearn
+      const initialCode = `import sklearn
 
 class ${className}(AbstractMlClass):
     def __init__(self, name, settings_json=''):
         '''Default constructor: the conditions must be the same to accomodate for default and
         optional settings of the algorithm'''
         if settings_json:
-            super().__init__(name, DecisionTreeRegressor(**settings_json))
+            super().__init__(name, NameOfTheAlgorithmConstructor(**settings_json))
         else:
-            super().__init__(name, DecisionTreeRegressor())
+            super().__init__(name, NameOfTheAlgorithmConstructor())
 `
-      console.log(initialCode)
+      let mlClassObj = {class_name: className, code: initialCode}
+      this.$store.commit('addMlClassConfigObj', mlClassObj)
+      this.$router.push('ml-class-editor/' + className)
     }
   }
 }

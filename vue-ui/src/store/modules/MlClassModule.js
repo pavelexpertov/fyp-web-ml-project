@@ -11,11 +11,11 @@ let mlClassConfigModule = {
     saveMlClassCode (state, passedDict) {
       if (!(passedDict.code && passedDict.class_name)) { console.log('passedDict needs to have class_name or/and code') }
       let list = state.ml_class_configs_obj_list
-      let index = _.findIndex(list, passedDict.class_name)
+      let index = _.findIndex(list, {class_name: passedDict.class_name})
       if (index !== -1) {
         list[index].code = passedDict.code
       } else {
-        console.log("Something's wrong in saveMlClassConfgObj")
+        console.log("Something's wrong in saveMlClassCode")
       }
     }
   },
@@ -36,6 +36,7 @@ let mlClassConfigModule = {
       _.forEach(list, function (value) {
         namesList.push(value.class_name)
       })
+      return namesList
     }
   }
 }
