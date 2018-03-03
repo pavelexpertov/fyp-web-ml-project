@@ -10,11 +10,13 @@ def get_ml_class_and_settings_list():
     return [[class_name, get_ml_class_settings(class_name)]
             for class_name in ml_class_dict]
 
+
 def add_new_ml_class(new_class_name, class_instance):
     if new_class_name not in ml_class_dict:
         ml_class_dict[new_class_name] = class_instance
     else:
         raise DuplicateMlClassName(new_class_name)
+
 
 def get_ml_class_settings(ml_class_name):
     '''Return a machine learning algorithm settings in JSON format'''
@@ -111,4 +113,5 @@ class UntrainedMlModelError(Error):
 
 class DuplicateMlClassName(Error):
     def __init__(self, class_name):
-        self.message = "{0} already exists within the ml classes.".format(class_name)
+        self.message = "{0} already exists within the ml classes.".format(
+            class_name)

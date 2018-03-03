@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from .route_handlers import mlmodels, dataset, mlalgorithms
+from .route_handlers import mlmodels, dataset, mlalgorithms, mlclass
 import fyp_web_ml_project.exceptions_collection as exc_coll
 
 app = Flask(__name__)
@@ -67,7 +67,19 @@ def query_data_set():
     query_json = request.get_json(force=True)
     return jsonify(dataset.query_data_set(query_json))
 
+
+@app.route('/mlclass/<class_name>', methods=['POST'])
+def add_new_ml_class(class_name):
+    '''Create a new class'''
+    class_code = request.get_json(force=True)
+    mlclass.add_new_ml_class(class_name, class_code)
+    successful_status = {
+        'ok': True, 'msg': "{0} class is added successfully".format(class_name)}
+    return jsonify(successful_status)
+
 # Error handlers for exceptions
+
+
 @app.errorhandler(exc_coll.NotFoundMlModelError)
 def handle_not_found_model(exc):
     return _jsonify_error_json(exc), 404
@@ -77,25 +89,36 @@ def handle_not_found_model(exc):
 def handle_not_found_class(exc):
     return _jsonify_error_json(exc), 404
 
+
 @app.errorhandler(exc_coll.UntrainedMlModelError)
 def handle_untrained_ml_model(exc):
     return _jsonify_error_json(exc), 500
+
 
 @app.errorhandler(exc_coll.UnrecognisedTypeError)
 def handle_unrecognised_type(exc):
     return _jsonify_error_json(exc), 500
 
+
 @app.errorhandler(exc_coll.NotFourKeysError)
-def handle_unrecognised_type(exc):
+def handle_not_four_keys_error(exc):
     return _jsonify_error_json(exc), 500
+
 
 @app.errorhandler(exc_coll.MissingQueryKeyInJsonError)
-def handle_unrecognised_type(exc):
+def handle_missing_query_key_in_json_error(exc):
     return _jsonify_error_json(exc), 500
 
+
 @app.errorhandler(exc_coll.MissingSettingParameterJsonError)
-def handle_unrecognised_type(exc):
+def handle_missing_setting_parameter_json_error(exc):
     return _jsonify_error_json(exc), 500
+
+
+@app.errorhandler(exc_coll.DuplicateMlClassName)
+def handle_duplicate_ml_class_name_error(exc):
+    return _jsonify_error_json(exc), 500
+
 
 def _jsonify_error_json(exc):
     '''Format the exception for JSON output'''
