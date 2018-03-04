@@ -71,7 +71,8 @@ def query_data_set():
 @app.route('/mlclass/<class_name>', methods=['POST'])
 def add_new_ml_class(class_name):
     '''Create a new class'''
-    class_code = request.get_json(force=True)
+    json_obj = request.get_json(force=True)
+    class_code = json_obj['code']
     mlclass.add_new_ml_class(class_name, class_code)
     successful_status = {
         'ok': True, 'msg': "{0} class is added successfully".format(class_name)}
@@ -117,6 +118,11 @@ def handle_missing_setting_parameter_json_error(exc):
 
 @app.errorhandler(exc_coll.DuplicateMlClassName)
 def handle_duplicate_ml_class_name_error(exc):
+    return _jsonify_error_json(exc), 500
+
+
+@app.errorhandler(exc_coll.ClassSyntaxError)
+def handle_class_syntax_error(exc):
     return _jsonify_error_json(exc), 500
 
 

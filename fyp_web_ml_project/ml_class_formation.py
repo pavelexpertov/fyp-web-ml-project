@@ -1,5 +1,6 @@
 """The purpose of the module is to formalise entered code and add it to ml_ops's module"""
 
+import sklearn
 import fyp_web_ml_project.ml_ops as ml_ops
 from fyp_web_ml_project.ml_classes_collection.ml_classes.abstract_ml_class import AbstractMlClass
 
@@ -7,7 +8,9 @@ from fyp_web_ml_project.ml_classes_collection.ml_classes.abstract_ml_class impor
 def add_new_ml_class(new_class_name, class_code):
     try:
         exec(class_code)
-    except (NameError, TypeError, IndentationError) as exc:
+        created_class_instance = locals()[new_class_name]
+        test_instance = created_class_instance('just a test')
+    except Exception as exc:
         raise ClassSyntaxError(str(exc)) from exc
     else:
         created_class_instance = locals()[new_class_name]

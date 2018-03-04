@@ -2,6 +2,8 @@
     <div>
     <h1>{{className}}</h1>
     <ml-class-editor :codeText="codeText" @saveCodeText="value => handleSaveCodeText(value)"></ml-class-editor>
+    <el-button @click="handleUploadButton">Upload</el-button>
+    <p>{{errorText}}</p>
 </div>
 </template>
 
@@ -12,7 +14,8 @@ export default {
   data () {
     return {
       codeText: '',
-      className: ''
+      className: '',
+      errorText: ''
     }
   },
   components: {
@@ -34,13 +37,30 @@ export default {
     },
     handleSaveCodeText (value) {
       this.codeText = value
+    },
+    handleUploadButton () {
+      this.errorText = ''
+      let jsonObj = {code: this.codeText}
+      this.$http.post('mlclass/' + this.className, jsonObj)
+        .then(response => {
+          this.$notify({
+            title: 'Successful Upload',
+            message: `${this.className} class has been uploaded successfully`,
+            duration: 4000
+          })
+        })
+        .catch(err => { this.errorText = err.body })
     }
   },
   created () {
     this.getClassConfigObject()
   },
+  beforeDestroy () {
+    this.saveClassConfigObject()
+  },
   watch: {
     '$route' (to, from) {
+      this.errorText = ''
       this.saveClassConfigObject()
       this.getClassConfigObject()
     }

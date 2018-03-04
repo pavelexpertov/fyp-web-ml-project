@@ -20,16 +20,17 @@ export default {
   methods: {
     handleCreateClick () {
       const className = this.mlClassName
-      const initialCode = `import sklearn
+      const initialCode = `
+# Pretend that the imoprt statement is already executed: import sklearn
 
 class ${className}(AbstractMlClass):
     def __init__(self, name, settings_json=''):
         '''Default constructor: the conditions must be the same to accomodate for default and
         optional settings of the algorithm'''
         if settings_json:
-            super().__init__(name, NameOfTheAlgorithmConstructor(**settings_json))
+            super().__init__(name, sklearn.NameOfTheAlgorithmConstructor(**settings_json))
         else:
-            super().__init__(name, NameOfTheAlgorithmConstructor())
+            super().__init__(name, sklearn.NameOfTheAlgorithmConstructor())
 `
       let mlClassObj = {class_name: className, code: initialCode}
       this.$store.commit('addMlClassConfigObj', mlClassObj)

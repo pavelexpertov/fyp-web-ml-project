@@ -49,8 +49,8 @@ class Test(AbstractMlCls):
         '''Test for a simple class creation'''
         test_code = '''
 class Test:
-    def __init__(self):
-        self.message = 'test'
+    def __init__(self, name):
+        self.name = name
 '''
         with patch('fyp_web_ml_project.ml_ops') as mock_obj:
             ml_class_formation.add_new_ml_class('Test', test_code)
@@ -61,8 +61,8 @@ class Test:
         '''Test for a simple class creation'''
         test_code = '''
 class Test(AbstractMlClass):
-    def __init__(self):
-        self.message = 'test'
+    def __init__(self, name):
+        self.name = name
 '''
         with patch('fyp_web_ml_project.ml_ops') as mock_obj:
             ml_class_formation.add_new_ml_class('Test', test_code)
@@ -75,8 +75,8 @@ class Test(AbstractMlClass):
 import sklearn
 
 class Test(AbstractMlClass):
-    def __init__(self):
-        self.message = 'test'
+    def __init__(self, name):
+        self.name = name
 '''
         with patch('fyp_web_ml_project.ml_ops') as mock_obj:
             ml_class_formation.add_new_ml_class('Test', test_code)
