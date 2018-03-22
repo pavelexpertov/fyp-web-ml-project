@@ -12,24 +12,30 @@
             <div>
                 <el-checkbox v-model="isCombinedDatasetChartActive">Use 2 dataset combined chart</el-checkbox>
                 <template v-if="isCombinedDatasetChartActive">
-                    <el-select v-model="selectedField1">
-                        <el-option
-                        v-for="feature in dataConfigObject.features_list"
-                        :key="feature"
-                        :label="feature"
-                        :value="feature"
-                        >
-                        </el-option>
-                    </el-select>
-                    <el-select v-model="selectedField2">
-                        <el-option
-                        v-for="feature in dataConfigObject.features_list"
-                        :key="feature"
-                        :label="feature"
-                        :value="feature"
-                        >
-                        </el-option>
-                    </el-select>
+                    <el-form ref="form" label-width="120px">
+                        <el-form-item label="DataSet 1">
+                            <el-select v-model="selectedField1">
+                                <el-option
+                                v-for="feature in featureList1"
+                                :key="feature"
+                                :label="feature"
+                                :value="feature"
+                                >
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="DataSet 2">
+                            <el-select v-model="selectedField2">
+                                <el-option
+                                v-for="feature in featureList2"
+                                :key="feature"
+                                :label="feature"
+                                :value="feature"
+                                >
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-form>
                 </template>
             </div>
         </el-col>
@@ -76,7 +82,6 @@ export default {
       this.$http.post('dataset', dataQuery)
         .then(response => {
           let queryResultList = response.body
-          // console.log(queryResultList)
           this.datasetList = queryResultList
         })
         .catch(err => console.log(err))
@@ -94,6 +99,22 @@ export default {
     this.saveDataConfig()
     next()
     this.getDataConfig()
+  },
+  computed: {
+    featureList1 () {
+        let selectedField = this.selectedField2
+        let index = Array.FindIndex(this.datasetList, feature => feature === selectedField)
+        if(index !== -1)
+            this.selectedField2 = ''
+        return this.datasetList.filter(feature => feature !== selectedField)
+    },
+    featureList2 () {
+        let selectedField = this.selectedField1
+        let index = Array.FindIndex(this.datasetList, feature => feature === selectedField)
+        if(index !== -1)
+            this.selectedField1 = ''
+        return this.datasetList.filter(feature => feature !== selectedField)
+    }
   }
 }
 </script>
