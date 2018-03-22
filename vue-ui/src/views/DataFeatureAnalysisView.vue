@@ -103,17 +103,15 @@ export default {
   computed: {
     featureList1 () {
         let selectedField = this.selectedField2
-        let index = Array.FindIndex(this.datasetList, feature => feature === selectedField)
-        if(index !== -1)
+        if(this.selectedField1 === this.selectedField2)
             this.selectedField2 = ''
-        return this.datasetList.filter(feature => feature !== selectedField)
+        return this.dataConfigObject.features_list.filter(feature => feature !== selectedField)
     },
     featureList2 () {
         let selectedField = this.selectedField1
-        let index = Array.FindIndex(this.datasetList, feature => feature === selectedField)
-        if(index !== -1)
+        if(this.selectedField1 === this.selectedField2)
             this.selectedField1 = ''
-        return this.datasetList.filter(feature => feature !== selectedField)
+        return this.dataConfigObject.features_list.filter(feature => feature !== selectedField)
     }
   }
 }
