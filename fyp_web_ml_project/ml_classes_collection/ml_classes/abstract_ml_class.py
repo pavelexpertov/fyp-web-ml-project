@@ -28,6 +28,12 @@ class AbstractMlClass:
         self.feature_names_list = feature_names_list
         self.estimator.fit(features_training_list, target_list)
 
+    def get_score_from_trained_model(self, features_test_list, target_test_list):
+        '''Get a score on a trained model'''
+        if not self.is_trained():
+            raise UntrainedModelError(self.name)
+        return self.estimator.score(features_test_list, target_test_list)
+
     def get_prediction_from_model(self, features_prediction_values_json):
         '''Return a predicted value based on provided prediction values'''
         fd = features_prediction_values_json
@@ -47,3 +53,13 @@ class AbstractMlClass:
     def is_trained(self):
         '''Return boolean whether a model is trained or not'''
         return hasattr(self, 'feature_names_list')
+
+
+class Error(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
+
+class UntrainedModelError(Error):
+    def __init__(self, model_name):
+        super().__init__("The {0} model is untrained".format(model_name))
