@@ -126,6 +126,11 @@ def handle_class_syntax_error(exc):
     return _jsonify_error_json(exc), 500
 
 
+@app.errorhandler(Exception)
+def handle_any_exception(exc):
+    return _jsonify_error_json(exc), 500
+
+
 def _jsonify_error_json(exc):
     '''Format the exception for JSON output'''
     return jsonify({'message': str(exc)})
