@@ -61,6 +61,20 @@ def get_ml_algorithms():
     return jsonify(mlalgorithms.get_class_and_settings_dict())
 
 
+@app.route('/mlalgorithms/<ml_name>/score', methods=['POST'])
+def get_score_from_ml_algorithm(ml_name):
+    '''Return a score after running tests on the algorithm.'''
+    json_obj = request.get_json(force=True)
+    settings_json = json_obj['settings_json']
+    dataset_query_json = json_obj['dataset_query_json']
+    number_of_runs = json_obj['number_of_runs']
+    perc_of_split = json_obj['perc_of_split']
+    score = mlalgorithms.get_score_from_ml_algorithm(ml_name, settings_json,
+                                                     dataset_query_json,
+                                                     number_of_runs,
+                                                     perc_of_split)
+    return jsonify({'score': score})
+
 @app.route('/dataset', methods=['POST'])
 def query_data_set():
     '''Return result for a dataset query'''

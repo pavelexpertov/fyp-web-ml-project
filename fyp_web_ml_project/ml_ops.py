@@ -87,6 +87,17 @@ def reconfigure_model(ml_model_name, settings_json):
     except KeyError as exc:
         raise NotFoundMlModelError(ml_model_name) from exc
 
+
+def get_score_from_ml_algorithm(ml_class_name, settings_json, features_set, training_features_set, training_class_set, test_features_set, test_class_set):
+    if ml_class_name not in ml_class_dict:
+        raise NotFoundMlClassError(ml_class_name)
+
+    ml_model_instance = ml_class_dict[ml_class_name](
+        "for scoring", settings_json)
+    ml_model_instance.train_model(
+        features_set, training_features_set, training_class_set)
+    return ml_model_instance.get_score_from_ml_algorithm(test_features_set, test_class_set)
+
 # List of exceptions
 
 
