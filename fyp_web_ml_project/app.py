@@ -67,7 +67,7 @@ def get_score_from_ml_algorithm(ml_name):
     json_obj = request.get_json(force=True)
     settings_json = json_obj['settings_json']
     dataset_query_json = json_obj['dataset_query_json']
-    number_of_runs = json_obj['number_of_runs']
+    number_of_runs = json_obj['number_or_runs']
     perc_of_split = json_obj['perc_of_split']
     score = mlalgorithms.get_score_from_ml_algorithm(ml_name, settings_json,
                                                      dataset_query_json,
@@ -140,9 +140,9 @@ def handle_class_syntax_error(exc):
     return _jsonify_error_json(exc), 500
 
 
-@app.errorhandler(Exception)
-def handle_any_exception(exc):
-    return _jsonify_error_json(exc), 500
+# @app.errorhandler(Exception)
+# def handle_any_exception(exc):
+    # return _jsonify_error_json(exc), 500
 
 
 def _jsonify_error_json(exc):

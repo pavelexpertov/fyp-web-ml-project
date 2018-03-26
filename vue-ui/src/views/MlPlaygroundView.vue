@@ -2,12 +2,29 @@
     <div>
         <h2>{{mlConfigName}}</h2>
         <el-row>
-            <ml-prediction-query-panel
-            v-if="predictionSchemaDoc"
-            :predictionSchemaDoc="predictionSchemaDoc"
-            :predictedSales="predictedSales"
-            @predictionQueryClick="handlePredictionQueryClick">
-            </ml-prediction-query-panel>
+          <el-tabs v-model="activeTab">
+            <el-tab-pane label="Prediction" name="prediction">
+              <ml-prediction-query-panel
+              v-if="predictionSchemaDoc"
+              :predictionSchemaDoc="predictionSchemaDoc"
+              :predictedSales="predictedSales"
+              @predictionQueryClick="handlePredictionQueryClick">
+              </ml-prediction-query-panel>
+              <template v-else>
+                <h2>Prediction Panel</h2>
+                <p>The model is not built</p>
+              </template>
+            </el-tab-pane>
+            <el-tab-pane label="Cross-validation" name="cross-validation">
+              <ml-cross-validation-panel
+              :dataConfigObject="dataConfigObject"
+              :mlConfigObject="mlConfigObject">
+              </ml-cross-validation-panel>
+            </el-tab-pane>
+            <el-tab-pane label="Features" name="features">
+              <p>Needs implementing</p>
+            </el-tab-pane>
+          </el-tabs>
         </el-row>
         <el-row>
             <h3>Selected Algorithm: </h3>
@@ -42,6 +59,7 @@
 import MlConfigurationsPanel from '@/components/MlConfigurationsPanel'
 import DataSetConfigurationsPanel from '@/components/DataSetConfigurationsPanel'
 import MlPredictionQueryPanel from '@/components/MlPredictionQueryPanel'
+import MlCrossValidationPanel from '@/components/MlCrossValidationPanel'
 import mlMixin from '@/mixins/ml_config_mixin'
 import dataMixin from '@/mixins/data_config_mixin'
 
@@ -50,12 +68,14 @@ export default {
   components: {
     mlConfigurationsPanel: MlConfigurationsPanel,
     dataSetConfigurationsPanel: DataSetConfigurationsPanel,
-    mlPredictionQueryPanel: MlPredictionQueryPanel
+    mlPredictionQueryPanel: MlPredictionQueryPanel,
+    mlCrossValidationPanel: MlCrossValidationPanel
   },
   data () {
     return {
       predictionSchemaDoc: '',
-      predictedSales: 0
+      predictedSales: 0,
+      activeTab: 'prediction'
     }
   },
   methods: {

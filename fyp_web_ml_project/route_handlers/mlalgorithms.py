@@ -39,8 +39,9 @@ def get_score_from_ml_algorithm(ml_name, settings_json, dataset_query_json, numb
                                                    training_classes_list,
                                                    test_features_list,
                                                    test_classes_list)
+        score = round(score, 2)
         if score not in counters:
-            counters[score] = 0
+            counters[score] = 1
         else:
             counters[score] = counters[score] + 1
 

@@ -96,7 +96,7 @@ def get_score_from_ml_algorithm(ml_class_name, settings_json, features_set, trai
         "for scoring", settings_json)
     ml_model_instance.train_model(
         features_set, training_features_set, training_class_set)
-    return ml_model_instance.get_score_from_ml_algorithm(test_features_set, test_class_set)
+    return ml_model_instance.get_score_from_trained_model(test_features_set, test_class_set)
 
 # List of exceptions
 
