@@ -16,13 +16,18 @@
         </el-form>
       </el-col>
       <el-col :span="16">
-        {{result}}
+        <cross-validation-chart-viewer
+        v-if="result"
+        :data="result.score"
+        >
+        </cross-validation-chart-viewer>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
+import CrossValidationChartViewer from '@/components/CrossValidationChartViewer'
 export default {
   name: 'MlCrossValidationPanel',
   props: {
@@ -39,7 +44,7 @@ export default {
     return {
       numberOfRuns: 10,
       percOfSplit: 0.70,
-      result: "Needs implementing"
+      result: ''
     }
   },
   methods: {
@@ -53,11 +58,14 @@ export default {
         perc_of_split: this.percOfSplit
       }
       this.$http.post(path, query)
-      .then(response => {
-        this.result = response.body
-      })
-      .catch(err => console.log("OHHHHH SOMETHING GOT WRONG:\n", err))
+        .then(response => {
+          this.result = response.body
+        })
+        .catch(err => console.log('OHHHHH SOMETHING GOT WRONG:\n', err))
     }
+  },
+  components: {
+    crossValidationChartViewer: CrossValidationChartViewer
   }
 }
 </script>
