@@ -22,7 +22,10 @@
               </ml-cross-validation-panel>
             </el-tab-pane>
             <el-tab-pane label="Features" name="features">
-              <p>Needs implementing</p>
+              <ml-parameters-tester-panel
+              :datasetConfigObj="dataConfigObject"
+              :mlClassName="mlConfigObject.name">
+              </ml-parameters-tester-panel>
             </el-tab-pane>
           </el-tabs>
         </el-row>
@@ -60,6 +63,7 @@ import MlConfigurationsPanel from '@/components/MlConfigurationsPanel'
 import DataSetConfigurationsPanel from '@/components/DataSetConfigurationsPanel'
 import MlPredictionQueryPanel from '@/components/MlPredictionQueryPanel'
 import MlCrossValidationPanel from '@/components/MlCrossValidationPanel'
+import MlParametersTesterPanel from '@/components/MlParametersTesterPanel'
 import mlMixin from '@/mixins/ml_config_mixin'
 import dataMixin from '@/mixins/data_config_mixin'
 
@@ -69,7 +73,8 @@ export default {
     mlConfigurationsPanel: MlConfigurationsPanel,
     dataSetConfigurationsPanel: DataSetConfigurationsPanel,
     mlPredictionQueryPanel: MlPredictionQueryPanel,
-    mlCrossValidationPanel: MlCrossValidationPanel
+    mlCrossValidationPanel: MlCrossValidationPanel,
+    mlParametersTesterPanel: MlParametersTesterPanel
   },
   data () {
     return {

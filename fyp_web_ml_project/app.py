@@ -75,6 +75,7 @@ def get_score_from_ml_algorithm(ml_name):
                                                      perc_of_split)
     return jsonify({'score': score})
 
+
 @app.route('/mlalgorithms/<ml_name>/best-params', methods=['POST'])
 def get_best_parameters_from_ml_algorithm(ml_name):
     json_obj = request.get_json(force=True)
