@@ -34,6 +34,9 @@ class AbstractMlClass:
             raise UntrainedModelError(self.name)
         return self.estimator.score(features_test_list, target_test_list)
 
+    def get_best_parameters_from_algorithm(self, parameter_grid, dataset_dict):
+        raise NotImplementedFunctionError("get_best_parameters_from_algorithm")
+
     def get_prediction_from_model(self, features_prediction_values_json):
         '''Return a predicted value based on provided prediction values'''
         fd = features_prediction_values_json
@@ -43,7 +46,7 @@ class AbstractMlClass:
         return list(prediction_array)[0]
 
     def reconfigure_class(self, settings_json):
-        raise Exception('Implement reconfigure_class method')
+        raise NotImplementedFunctionError("reconfigure_class")
 
     def remove_features_names_list(self):
         '''Remove a feature_names_list property from an instance'''
@@ -63,3 +66,7 @@ class Error(Exception):
 class UntrainedModelError(Error):
     def __init__(self, model_name):
         super().__init__("The {0} model is untrained".format(model_name))
+
+class NotImplementedFunctionError(Error):
+    def __init__(self, function_name):
+        super().__init__("{0} function is not implemented. Please, implement it".format(function_name))

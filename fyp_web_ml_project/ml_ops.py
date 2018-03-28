@@ -98,6 +98,12 @@ def get_score_from_ml_algorithm(ml_class_name, settings_json, features_set, trai
         features_set, training_features_set, training_class_set)
     return ml_model_instance.get_score_from_trained_model(test_features_set, test_class_set)
 
+
+def get_best_parameters_from_algorithm(ml_class_name, parameters_dict, dataset_dict):
+    if ml_class_name not in ml_class_dict:
+        raise NotFoundMlClassError(ml_class_name)
+    return ml_class_dict[ml_class_name]('getting best params').get_best_parameters_from_algorithm(parameters_dict, dataset_dict)
+
 # List of exceptions
 
 

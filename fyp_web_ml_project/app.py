@@ -75,6 +75,17 @@ def get_score_from_ml_algorithm(ml_name):
                                                      perc_of_split)
     return jsonify({'score': score})
 
+@app.route('/mlalgorithms/<ml_name>/best-params', methods=['POST'])
+def get_best_parameters_from_ml_algorithm(ml_name):
+    json_obj = request.get_json(force=True)
+    parameters_grid = json_obj['parameters_grid']
+    dataset_query_json = json_obj['dataset_query_json']
+    result_dict = mlalgorithms.get_best_parameters_from_ml_algorithm(ml_name,
+                                                                     parameters_grid,
+                                                                     dataset_query_json)
+    return jsonify({'result': result_dict})
+
+
 @app.route('/dataset', methods=['POST'])
 def query_data_set():
     '''Return result for a dataset query'''

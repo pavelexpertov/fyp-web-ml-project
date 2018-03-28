@@ -46,3 +46,17 @@ def get_score_from_ml_algorithm(ml_name, settings_json, dataset_query_json, numb
             counters[score] = counters[score] + 1
 
     return counters
+
+def get_best_parameters_from_ml_algorithm(ml_class_name, parameters_dict, dataset_query_json):
+    dataset = get_training_and_target_set(dataset_query_json['store_number'],
+                                          dataset_query_json['features_list'],
+                                          dataset_query_json['start_date'],
+                                          dataset_query_json['end_date'])
+
+    (training_features_list, test_features_list, training_classes_list,
+     test_classes_list) = train_test_split(dataset['training_set'],
+                                           dataset['target_set'],
+                                           train_size=0.1)
+    dataset_dict = {'training_feature_set': training_features_list, 'training_class_set': training_classes_list}
+    result_dict = ml_ops.get_best_parameters_from_algorithm(ml_class_name, parameters_dict, dataset_dict)
+    return result_dict
