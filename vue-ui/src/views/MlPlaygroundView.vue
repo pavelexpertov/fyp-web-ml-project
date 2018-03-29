@@ -66,6 +66,7 @@ import MlCrossValidationPanel from '@/components/MlCrossValidationPanel'
 import MlParametersTesterPanel from '@/components/MlParametersTesterPanel'
 import mlMixin from '@/mixins/ml_config_mixin'
 import dataMixin from '@/mixins/data_config_mixin'
+import dataObjectFormatter from '@/utils/data_obj_formatter'
 
 export default {
   name: 'MlPlaygroundView',
@@ -99,7 +100,7 @@ export default {
       let settingsJson = this.mlConfigObject.settings_values
       let jsonRequest = {
         ml_class_name: mlClassName,
-        settings_json: settingsJson,
+        settings_json: this.formattedMlSettingsObj,
         dataset_query_json: dataQueryJson
       }
       let modelName = this.mlConfigName
@@ -138,6 +139,9 @@ export default {
       // Return a list of configs for the dropdown list
       let namesList = this.$store.getters.getDataConfigNamesList
       return namesList
+    },
+    formattedMlSettingsObj () {
+      return dataObjectFormatter(this.mlConfigObject.settings_values)
     }
   },
   created: function () {
