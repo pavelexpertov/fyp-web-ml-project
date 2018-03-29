@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: "MlParametersTesterPanel",
+  name: 'MlParametersTesterPanel',
   props: {
     datasetConfigObj: {
       type: Object,
@@ -36,7 +36,7 @@ export default {
   },
   data () {
     return {
-      paramJson: 'sdfsdfsdf',
+      paramJson: '',
       result: ''
     }
   },
@@ -49,10 +49,10 @@ export default {
         dataset_query_json: this.datasetConfigObj
       }
       this.$http.post(path, query)
-      .then(response => {
-        this.result = response.body
-      })
-      .catch(err => console.log(err))
+        .then(response => {
+          this.result = response.body
+        })
+        .catch(err => console.log(err))
     }
   }
 }
