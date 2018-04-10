@@ -21,7 +21,7 @@
               :mlConfigObject="mlConfigObject">
               </ml-cross-validation-panel>
             </el-tab-pane>
-            <el-tab-pane label="Features" name="features">
+            <el-tab-pane label="Parameters" name="parameters">
               <ml-parameters-tester-panel
               :datasetConfigObj="dataConfigObject"
               :mlClassName="mlConfigObject.name">

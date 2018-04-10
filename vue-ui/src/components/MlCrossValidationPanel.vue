@@ -3,11 +3,11 @@
     <h2>Cross validation panel</h2>
     <el-row>
       <el-col :span="8">
-        <el-form ref="form" label-width="120px">
+        <el-form ref="form" label-width="120px" label-position="top">
           <el-form-item label="Number Of Runs">
             <el-input-number v-model="numberOfRuns"></el-input-number>
           </el-form-item>
-          <el-form-item label="Split Percentage">
+          <el-form-item label="Train Split Percentage">
             <el-input-number v-model="percOfSplit"></el-input-number>
           </el-form-item>
         <el-button type="primary" @click="handleClick">

@@ -1,12 +1,5 @@
 <template>
-  <div>
-    <el-form>
-      <el-form-item label="Select this needs rewrite">
-        <el-checkbox v-model="rangeValuesFlag"></el-checkbox>
-      </el-form-item>
-      <bar-chart-component :chartData="normalDataList" :options="options"></bar-chart-component>
-    </el-form>
-  </div>
+      <bar-chart-component :chartData="normalDataList" :options="options" :width="600" :height="300"></bar-chart-component>
 </template>
 
 <script>
@@ -18,7 +11,7 @@ export default {
   data () {
     return {
       options: {
-        responsive: true
+        responsive: false
       },
       rangeValuesFlag: false
     }
