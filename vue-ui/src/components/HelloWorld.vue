@@ -1,97 +1,13 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
+  <!-- <div class="hello"> -->
+  <div>
+    <h1>Welcome</h1>
+    <p>This web application is used for playing with machine learning algorithms. The sub tabs on the left are:</p>
     <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
+      <li>Dataset Settings - It allows you to configure a settings based on dataset's features and see what the data looks like based on them.</li>
+      <li>ML Algorithm Playground - It allows you to create a model based on selected machine learning algorithm, its tweaked settings and selected Data Set settings.</li>
+      <li>User ML Classes - It allows you to add your own algorithm implementation of the machine learning class by either utilising sci-kit library or your own implementation.</li>
     </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
-    <!-- <btn @click="add">
-        add
-    </btn> -->
-    <h3>
-        {{response_add}}
-    </h3>
-    <p @click="show">
-        show
-    </p>
-    <h3>
-        {{response_show}}
-    </h3>
   </div>
 </template>
 
@@ -128,15 +44,18 @@ methods: {
 h1, h2 {
   font-weight: normal;
 }
-ul {
+/* ul {
   list-style-type: none;
   padding: 0;
 }
 li {
   display: inline-block;
   margin: 0 10px;
-}
+} */
 a {
   color: #42b983;
+}
+div li, p{
+  text-align: left;
 }
 </style>
