@@ -36,6 +36,7 @@
         </el-form>
         <el-transfer
           v-model="datasetConfigObj.features_list"
+          :titles="['Available', 'Selected']"
           :data="featureNamesList"
           class="transfer-class"
         >
