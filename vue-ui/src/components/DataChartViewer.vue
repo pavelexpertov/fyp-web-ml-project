@@ -1,7 +1,9 @@
 <template>
     <div>
         <div v-for="dataObject in formattedDataObjectList" v-bind:key="dataObject.datasets[0].label">
-            <line-chart-component :chartData="dataObject" :options="options" :key="dataObject.datasets[0].label + 2">
+            <line-chart-component :chartData="dataObject" :options="options" :key="dataObject.datasets[0].label + 2"
+            :width="800"
+            :height="300">
             </line-chart-component>
         </div>
     </div>
@@ -15,7 +17,7 @@ export default {
   data () {
     return {
       options: {
-        responsive: true,
+        responsive: false,
         scales: {
           xAxes: [{
             type: 'time'

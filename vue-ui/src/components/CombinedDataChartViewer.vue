@@ -1,7 +1,9 @@
 
 <template>
     <div>
-        <line-chart-component :chartData="combinedDataObjectWithTwoDatasets" :options="options">
+        <line-chart-component :chartData="combinedDataObjectWithTwoDatasets" :options="options"
+        :width="800"
+        :height="500">
         </line-chart-component>
     </div>
 </template>
@@ -14,7 +16,7 @@ export default {
   data () {
     return {
       options: {
-        responsive: true,
+        responsive: false,
         scales: {
           xAxes: [{
             type: 'time'
