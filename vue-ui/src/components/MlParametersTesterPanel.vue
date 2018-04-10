@@ -15,13 +15,23 @@
           <el-button @click="handleClick">Run</el-button>
       </el-col>
       <el-col :span="12">
-        {{result}}
+        <template v-if="result">
+          <h3>Best Score: {{result.result.best_score}}</h3>
+          <el-table
+          :data="bestParametersTable" style="width: 100%">
+            <el-table-column prop="parameter" label="Parameter">
+            </el-table-column>
+            <el-table-column prop="value" label="Best Value">
+            </el-table-column>
+          </el-table>
+        </template>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
+import * as _ from 'lodash'
 export default {
   name: 'MlParametersTesterPanel',
   props: {
@@ -38,6 +48,16 @@ export default {
     return {
       paramJson: '',
       result: ''
+    }
+  },
+  computed: {
+    bestParametersTable () {
+      let dataList = []
+      let bestParamsObj = this.result.result.best_params
+      _.forOwn(bestParamsObj, function (value, key) {
+        dataList.push({parameter: key, value: value})
+      })
+      return dataList
     }
   },
   methods: {
