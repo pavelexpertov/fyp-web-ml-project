@@ -37,6 +37,10 @@ def is_model_created(model_name):
     return ml_ops.is_model_created(model_name)
 
 
+def get_built_model_params(model_name):
+    return ml_ops.get_model_parameters_dict(model_name)
+
+
 def get_prediction_from_model(model_name, features_values_json):
     return ml_ops.get_prediction_from_model(model_name, features_values_json)
 

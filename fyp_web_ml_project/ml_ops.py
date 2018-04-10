@@ -33,7 +33,7 @@ def is_model_created(ml_model_name):
 def get_model_parameters_dict(ml_model_name):
     '''Return a model's current parameter list'''
     try:
-        return ml_models_dict[ml_model_name].get_settings_parameter_list()
+        return ml_models_dict[ml_model_name].get_current_settings_parameters()
     except KeyError as exc:
         raise NotFoundMlModelError(ml_model_name) from exc
 
@@ -72,7 +72,7 @@ def create_model(ml_model_name, ml_class_name, settings_json):
         ml_class = ml_class_dict[ml_class_name]
         validator_utils.check_ml_settings_json(
             ml_class(ml_model_name).get_settings_parameter_list(), settings_json)
-        ml_models_dict[ml_model_name] = ml_class(settings_json)
+        ml_models_dict[ml_model_name] = ml_class(ml_model_name, settings_json)
     except KeyError as exc:
         raise NotFoundMlClassError(ml_class_name) from exc
 

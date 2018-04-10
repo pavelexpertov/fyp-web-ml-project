@@ -55,6 +55,13 @@ def is_model_create(ml_id):
     return jsonify(obj)
 
 
+@app.route('/mlmodels/<ml_id>/params')
+def get_built_model_params(ml_id):
+    '''Return params from a built model'''
+    obj = {'params': mlmodels.get_built_model_params(ml_id)}
+    return jsonify(obj)
+
+
 @app.route('/mlalgorithms')
 def get_ml_algorithms():
     '''Return a list of available algorithms and their information'''
