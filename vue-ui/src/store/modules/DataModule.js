@@ -24,6 +24,11 @@ let dataConfigModule = {
         namesList.push(value.name)
       })
       return namesList
+    },
+    isDataConfigNameExists: (state) => (configObjName) => {
+      let list = state.data_configs_obj_list
+      let index = _.findIndex(list, {'name': configObjName})
+      return index !== -1
     }
   }
 }

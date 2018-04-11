@@ -104,12 +104,12 @@ export default {
   computed: {
     featureList1 () {
       let selectedField = this.selectedField2
-      if (this.dataConfigObject.features_list.indexOf(selectedField) === -1) {  this.selectedField2 = '' }
+      if (this.dataConfigObject.features_list.indexOf(selectedField) === -1) { this.selectedField2 = '' }
       return this.dataConfigObject.features_list.filter(feature => feature !== selectedField)
     },
     featureList2 () {
       let selectedField = this.selectedField1
-      if (this.dataConfigObject.features_list.indexOf(selectedField) === -1) {  this.selectedField1 = '' }
+      if (this.dataConfigObject.features_list.indexOf(selectedField) === -1) { this.selectedField1 = '' }
       return this.dataConfigObject.features_list.filter(feature => feature !== selectedField)
     }
   }

@@ -37,6 +37,11 @@ let mlClassConfigModule = {
         namesList.push(value.class_name)
       })
       return namesList
+    },
+    isMlClassConfigNameExists: (state) => (className) => {
+      let list = state.ml_class_configs_obj_list
+      let index = _.findIndex(list, {'class_name': className})
+      return index !== -1
     }
   }
 }

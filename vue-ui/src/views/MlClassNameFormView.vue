@@ -19,9 +19,11 @@ export default {
   },
   methods: {
     handleCreateClick () {
-      if(!this.mlClassName) {this.$notify({title: 'Error', message: "Name must be entered"}); return}
-      if(this.mlClassName.length < 3) {this.$notify({title: 'Error', message: "Name must be a bit longer"}); return}
+      if (!this.mlClassName) { this.$notify({title: 'Error', message: 'Name must be entered'}); return }
+      if (this.mlClassName.length < 3) { this.$notify({title: 'Error', message: 'Name must be a bit longer'}); return }
       const className = this.appendMLextension(this.mlClassName)
+      let createdFlag = this.$store.getters.isMlClassConfigNameExists(className)
+      if (createdFlag) { this.$notify({title: 'Error', message: 'Enter another name'}); return }
       const initialCode = `
 # Pretend that the imoprt statement is already executed: import sklearn
 
@@ -40,10 +42,7 @@ class ${className}(AbstractMlClass):
     },
     appendMLextension (className) {
       let extension = className.slice(-2)
-      if(extension !== "ML")
-        return className + "ML"
-      else
-        return className
+      if (extension !== 'ML') { return className + 'ML' } else { return className }
     }
   }
 }
