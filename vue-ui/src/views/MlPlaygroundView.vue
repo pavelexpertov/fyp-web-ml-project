@@ -48,6 +48,7 @@
                 :value="name">
                 </el-option>
             </el-select>
+            <p>Note: make sure Weekly_Sales feature is not part of the selected list since that crashes the model</p>
             <data-set-configurations-panel
             v-if="dataConfigObject"
             :datasetConfigObj="dataConfigObject"
