@@ -2,7 +2,7 @@
     <div>
         <div v-for="dataObject in formattedDataObjectList" v-bind:key="dataObject.datasets[0].label">
             <line-chart-component :chartData="dataObject" :options="options" :key="dataObject.datasets[0].label + 2"
-            :width="800"
+            :width="1050"
             :height="300">
             </line-chart-component>
         </div>
