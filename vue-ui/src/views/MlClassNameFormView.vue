@@ -19,7 +19,9 @@ export default {
   },
   methods: {
     handleCreateClick () {
-      const className = this.mlClassName
+      if(!this.mlClassName) {this.$notify({title: 'Error', message: "Name must be entered"}); return}
+      if(this.mlClassName.length < 3) {this.$notify({title: 'Error', message: "Name must be a bit longer"}); return}
+      const className = this.appendMLextension(this.mlClassName)
       const initialCode = `
 # Pretend that the imoprt statement is already executed: import sklearn
 
@@ -35,6 +37,13 @@ class ${className}(AbstractMlClass):
       let mlClassObj = {class_name: className, code: initialCode}
       this.$store.commit('addMlClassConfigObj', mlClassObj)
       this.$router.push('ml-class-editor/' + className)
+    },
+    appendMLextension (className) {
+      let extension = className.slice(-2)
+      if(extension !== "ML")
+        return className + "ML"
+      else
+        return className
     }
   }
 }
