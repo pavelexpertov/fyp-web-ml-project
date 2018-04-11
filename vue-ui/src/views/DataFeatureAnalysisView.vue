@@ -3,6 +3,7 @@
     <h2>{{dataConfigName}}</h2>
     <el-row>
         <el-col :span="8">
+            <p>Note: each time you change properties in a dataset settings, you need to press refresh button.</p>
             <data-set-configurations-panel
             :datasetConfigObj="dataConfigObject"
             :showButton="true"
@@ -103,12 +104,12 @@ export default {
   computed: {
     featureList1 () {
       let selectedField = this.selectedField2
-      if (this.selectedField1 === this.selectedField2) { this.selectedField2 = '' }
+      if (this.dataConfigObject.features_list.indexOf(selectedField) === -1) {  this.selectedField2 = '' }
       return this.dataConfigObject.features_list.filter(feature => feature !== selectedField)
     },
     featureList2 () {
       let selectedField = this.selectedField1
-      if (this.selectedField1 === this.selectedField2) { this.selectedField1 = '' }
+      if (this.dataConfigObject.features_list.indexOf(selectedField) === -1) {  this.selectedField1 = '' }
       return this.dataConfigObject.features_list.filter(feature => feature !== selectedField)
     }
   }
