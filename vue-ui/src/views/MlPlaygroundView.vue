@@ -154,6 +154,22 @@ export default {
     this.saveDataAndMlConfig()
     next()
     this.getDataAndMlConfig()
+    this.$http.get('mlmodels/' + this.mlConfigName + '/created')
+    .then(response => {
+      let resObj = response.body
+      let createdFlag = resObj.created
+      if(createdFlag){
+        this.$http.get('mlmodels/' + this.mlConfigName + '/predictions')
+        .then(response => {
+          this.predictionSchemaDoc = response.body
+        })
+        .catch(err => console.log(err))
+      }
+      else {
+        this.predictionSchemaDoc = ''
+      }
+    })
+    .catch(err => console.log(err))
   },
   mixins: [mlMixin, dataMixin]
 }
