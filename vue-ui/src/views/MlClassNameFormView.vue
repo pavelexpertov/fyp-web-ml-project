@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h4>Enter a name for you class</h4>
+    <h4>Enter a name for your class</h4>
     <el-input v-model="mlClassName"></el-input>
     <el-button @click="handleCreateClick">Create</el-button>
 </div>

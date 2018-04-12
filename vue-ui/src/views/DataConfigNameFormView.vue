@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h4>Enter a name for a dataset configuration</h4>
         <el-input v-model="newDataConfigName" placeholder="Enter a new name for Dataset configuration"></el-input>
         <el-button @click="saveName">Save</el-button>
     </div>
