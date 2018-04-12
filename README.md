@@ -42,3 +42,4 @@ flask run
 - virtualbox 5.1.34
 - Vagrant 2.0.2
 - db version v3.6.3
+- Python 3.6.2
