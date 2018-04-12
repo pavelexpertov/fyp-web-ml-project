@@ -101,9 +101,9 @@ export default {
     next()
     this.getDataConfig()
     this.isCombinedDatasetChartActive = false
-      this.selectedField1 = ''
-      this.selectedField2 = ''
-      this.datasetList = ''
+    this.selectedField1 = ''
+    this.selectedField2 = ''
+    this.datasetList = ''
   },
   computed: {
     featureList1 () {
