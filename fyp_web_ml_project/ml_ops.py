@@ -12,10 +12,7 @@ def get_ml_class_and_settings_list():
 
 
 def add_new_ml_class(new_class_name, class_instance):
-    if new_class_name not in ml_class_dict:
-        ml_class_dict[new_class_name] = class_instance
-    else:
-        raise DuplicateMlClassName(new_class_name)
+    ml_class_dict[new_class_name] = class_instance
 
 
 def get_ml_class_settings(ml_class_name):
