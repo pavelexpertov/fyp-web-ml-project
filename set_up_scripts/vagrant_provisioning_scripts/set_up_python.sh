@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-# Setting up python dependencies
-sudo apt-get install -y python3-pip python3-setuptools
-wget https://files.pythonhosted.org/packages/c4/44/e6b8056b6c8f2bfd1445cc9990f478930d8e3459e9dbf5b8e2d2922d64d3/pip-9.0.3.tar.gz
-tar -xzvf pip-9.0.3.tar.gz
-cd pip-9.0.3
-python3 setup.py install
-#pip3 install -U pip
+sudo apt update
+sudo apt install -y build-essential checkinstall libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev libffi-dev
+wget https://www.python.org/ftp/python/3.6.2/Python-3.6.2.tgz
+tar xvf Python-3.6.2.tgz
+cd Python-3.6.2
+./configure
+make
+sudo make install
 sudo pip3 install virtualenv
